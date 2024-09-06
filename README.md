@@ -35,7 +35,7 @@ Mål: Sätt upp projektet och skapa en landningssida där användaren kan se en 
 - Cocktailens namn och bild ska visas som ett kort.
 - Användare ska kunna klicka på **Se mer** för att navigera till en `Cocktail Info Page`.
 
-Under denna vecka bör ni sätta upp projektet i Vite med React TypeScript. Implementera React Router för att kunna navigera mellan olika sidor. Använd även useEffect och useState för att hantera API-anropet och lagra den slumpmässiga cocktailen.
+Under denna vecka bör ni sätta upp projektet i Vite med React TypeScript. Implementera React Router för att kunna navigera mellan olika sidor. Använd även useEffect och useState för att hantera API-anropet och lagra den slumpmässiga cocktailen. Eller om ni vill försöka er på att hämta datan via en loader-funktion istället.
 
 #### Delmål
 
