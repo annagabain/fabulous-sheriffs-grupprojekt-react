@@ -5,14 +5,12 @@
 
 - [Instruktioner](#instruktioner)
 - [Krav](#krav)
-  - [Första veckan: Landing Page](#första-veckan-landing-page-random-cocktail)
-  - [Andra veckan: Search Page](#andra-veckan-search-page)
-  - [Tredje veckan: Cocktail Info Page](#tredje-veckan-cocktail-info-page)
+  - [Första veckan: Landing Page & Search Page](#första-veckan-landing-page--search-page)
+  - [Andra veckan: Cocktail Info Page & Favorites Page](#andra-veckan-cocktail-info-page--favorites-page)
+  - [Tredje veckan: Ingredient Page & Bonusfunktioner](#tredje-veckan-ingredient-page--bonusfunktioner)
 - [Extra funktioner](#extra-funktioner---välj-dina-utmaningar)
   - [Search Page++](#search-page-1)
-  - [Favorites Page](#favorites-page)
-  - [Ingredient Page](#ingredient-page)
-  - [Generella funktioner](#generella-funktioner)
+  - [General features](#general-features)
 
 </details>
 
@@ -22,62 +20,73 @@ Ni ska bygga en cocktail-wiki som använder data från [The Cocktail DB API](htt
 
 Uppgiften kommer att delas in i tre sprintar som sträcker sig över tre veckor. Varje sprint avslutas med en code review på fredagen, där ni ska presentera och granska varandras kod inom gruppen. Ni kommer också att sätta upp delmål inför varje sprint och planera vem som arbetar med vad inom gruppen. Detta kräver att ni aktivt samarbetar och kommunicerar.
 
-Applikationen ska byggas med Vite och React TypeScript och innehålla minst tre olika sidor.
+Applikationen ska byggas med Vite och React TypeScript och innehålla minst sex olika sidor.
 
 ## Krav
 
-### Första veckan: Landing Page (Random Cocktail)
+### Första veckan: Landing Page & Search Page
 
-Mål: Sätt upp projektet och skapa en landningssida där användaren kan se en slumpmässig cocktail.
+Mål: Sätt upp projektet och skapa både en landningssida där användaren kan se en slumpmässig cocktail och en söksida där användaren kan söka efter cocktails.
 
-- Användare ska kunna se en slumpmässig cocktail när de besöker sidan.
-- Användare ska kunna hämta en ny slumpmässig cocktail genom att klicka på en knapp.
-- Cocktailens namn och bild ska visas som ett kort.
-- Användare ska kunna klicka på **Se mer** för att navigera till en `Cocktail Info Page`.
+- **Landing Page (Random Cocktail)**
+  - Användare ska kunna se en slumpmässig cocktail när de besöker sidan.
+  - Användare ska kunna hämta en ny slumpmässig cocktail genom att klicka på en knapp.
+  - Cocktailens namn och bild ska visas som ett kort.
+  - Användare ska kunna klicka på **Se mer** för att navigera till en `Cocktail Info Page`.
 
-Under denna vecka bör ni sätta upp projektet i Vite med React TypeScript. Implementera React Router för att kunna navigera mellan olika sidor. Använd även useEffect och useState för att hantera API-anropet och lagra den slumpmässiga cocktailen. Eller om ni vill försöka er på att hämta datan via en loader-funktion istället.
+- **Search Page**
+  - Användare ska kunna söka efter en cocktail med hjälp av dess namn.
+  - Resultaten ska visas i en lista med max 10 resultat, och listan ska vara paginerad om det finns fler än 10 resultat.
+  - Vid klick på en cocktail i listan ska användaren navigeras till `Cocktail Info Page`.
+
+Denna vecka bör ni sätta upp projektet i Vite med React TypeScript. Implementera React Router för att kunna navigera mellan olika sidor. Använd useEffect och useState för att hantera API-anrop och lagra cocktails. Dessutom ska ni läsa på om loaders och actions i React Router för att senare kunna implementera dem i projektet.
 
 #### Delmål
 
 1. Sätt upp projektet med Vite och React TypeScript.
 2. Implementera landningssidan med slumpmässig cocktail.
-3. Använd React Router för att förbereda navigation till kommande sidor.
+3. Implementera söksidan med sökfunktion och paginering.
+4. Läs på om loaders och actions i React Router.
 
-**Code Review på fredag:** Gå igenom koden tillsammans och säkerställ att alla förstår implementationen.
+**Code Review på fredag:** Gå igenom koden tillsammans och säkerställ att alla förstår implementationen samt diskutera era första intryck av loaders och actions.
 
-### Andra veckan: Search Page
+### Andra veckan: Cocktail Info Page & Favorites Page
 
-Mål: Skapa en söksida där användare kan söka efter cocktails.
+Mål: Skapa en sida för detaljerad information om cocktails och en favoritsida där användaren kan spara sina favoritcocktails.
 
-- Användare ska kunna söka efter en cocktail med hjälp av dess namn.
-- Resultaten ska visas i en lista med max 10 resultat, och listan ska vara paginerad om det finns fler än 10 resultat.
-- Vid klick på en cocktail i listan ska användaren navigeras till `Cocktail Info Page`.
+- **Cocktail Info Page**
+  - Denna sida ska visa detaljerad information om en cocktail, inklusive kategori, bild, taggar, ingredienser och mått, samt vilket glas den ska serveras i.
 
-Denna vecka ska ni använda React useContext för att dela sökresultaten mellan olika komponenter, och ni kan även använda useRef för att hantera referenser i formuläret.
+- **Favorites Page**
+  - Användare ska kunna spara sina favoritcocktails och visa dem på en separat sida.
+  - Användare ska kunna ta bort favoriter.
+  - Favoriter ska lagras lokalt i webbläsarens localStorage.
 
-#### Delmål
-
-1. Skapa sökformuläret och implementera sökfunktionen.
-2. Visa resultaten i en lista med paginering.
-3. Använd useContext för att dela data mellan komponenter.
-
-**Code Review på fredag:** Diskutera kodstrukturen och samarbetet inom gruppen.
-
-### Tredje veckan: Cocktail Info Page
-
-Mål: Skapa en sida för detaljerad information om en specifik cocktail.
-
-- Denna sida ska visa detaljerad information om en cocktail, inklusive kategori, bild, taggar, ingredienser och mått, samt vilket glas den ska serveras i.
-
-Nu ska ni använda useEffect för att hämta cocktailinformationen baserat på URL-parametrar via React Router. Fokusera på att optimera er kod och göra en slutlig genomgång av hela applikationen.
+Denna vecka ska ni fokusera på att implementera användning av React useContext för att hantera favoriterna mellan komponenter och React Router för navigering. Använd också useEffect för att hämta cocktailinformation baserat på URL-parametrar.
 
 #### Delmål
 
 1. Implementera detaljerad informationssida för cocktails.
-2. Hämta data från API:t baserat på URL-parametrar.
-3. Testa och säkerställ att hela applikationen fungerar som den ska.
+2. Implementera favoritsidan med möjlighet att lägga till och ta bort favoriter.
+3. Använd useContext för att hantera favoriterna.
 
-**Code Review på fredag:** Granska hela applikationen och förbered inför inlämning.
+**Code Review på fredag:** Diskutera användningen av useContext och hur ni hanterar data mellan sidorna.
+
+### Tredje veckan: Ingredient Page & Bonusfunktioner
+
+Mål: Skapa en sida för detaljerad information om ingredienser och implementera eventuella bonusfunktioner.
+
+- **Ingredient Page**
+  - Användare ska kunna se detaljerad information om en ingrediens genom att klicka på den. Informationen ska inkludera namn, beskrivning, alkoholhalt (om tillämpligt), och vilka andra cocktails som innehåller den.
+
+Denna vecka ska ni också slutföra och implementera eventuella bonusfunktioner som ni har valt att arbeta med.
+
+#### Delmål
+
+1. Implementera detaljerad informationssida för ingredienser.
+2. Implementera de bonusfunktioner ni valt.
+
+**Code Review på fredag:** Granska hela applikationen, inklusive bonusfunktioner, och säkerställ att allt fungerar som det ska. Förbered för inlämning.
 
 ## Extra funktioner - välj dina utmaningar
 
@@ -87,15 +96,6 @@ Om ni blir klara med grundkraven kan ni välja att implementera några av dessa 
 
 - Användare ska kunna göra avancerade sökningar baserat på kategori, ingrediens eller glas.
 - Resultaten ska cachas så att API-anrop inte görs om för redan besökta cocktails.
-
-### Favorites Page
-
-- Användare ska kunna spara sina favoritcocktails och visa dem på en separat sida.
-- Favoriter ska lagras lokalt i webbläsarens localStorage.
-
-### Ingredient Page
-
-- Genom att klicka på en ingrediens ska användaren kunna se detaljerad information om ingrediensen, inklusive om den är alkoholhaltig, och vilka andra cocktails som innehåller den.
 
 ### Generella funktioner
 
