@@ -1,5 +1,12 @@
 # Cocktail-Wiki
 
+
+<img src="src\assets\landing-page-wireframe.png">
+<img src="src\assets\search-page-wireframe.png">
+
+
+
+
 <details>
   <summary>Innehållsförteckning</summary>
 
