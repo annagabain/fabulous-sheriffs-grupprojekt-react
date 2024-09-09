@@ -103,3 +103,6 @@ Om ni blir klara med grundkraven kan ni välja att implementera några av dessa 
 - Lägg till felhantering för API-anrop och visa användarvänliga felmeddelanden.
 - Lägg till laddningstillstånd och platshållare för datahämtning.
 - Användare ska kunna filtrera bort alkoholhaltiga drinkar.
+
+## Gruppindelning:
+![Gruppindelning](screenshot-groupie-1725867454486.png "Gruppindelning")
