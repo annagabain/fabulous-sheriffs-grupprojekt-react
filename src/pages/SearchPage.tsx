@@ -30,7 +30,10 @@ export default function SearchPage() {
 
 
     const handleSearch = async (e: React.FormEvent<HTMLFormElement>) => {
+      
         e.preventDefault();
+        
+      
 
         console.log("Search Term:", searchTerm);
 
@@ -45,7 +48,10 @@ export default function SearchPage() {
 
         } else {
             console.log("No match found.");
+            setCocktailName('');
         }
+    // Clear the input field
+    setSearchTerm('');
     };
 
 
@@ -58,6 +64,7 @@ export default function SearchPage() {
                 <input
                     id="coctailSearch"
                     type="text"
+                    value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     placeholder="Enter cocktail name"
                 />
@@ -66,7 +73,7 @@ export default function SearchPage() {
 
 
             {/* Display search results */}
-            <p>Search Result: {fetchedCocktailName ? fetchedCocktailName: "No match found."}</p>
+            <p>Search Result: {fetchedCocktailName ? fetchedCocktailName : "No match found."}</p>
 
         </>
     )
