@@ -12,7 +12,7 @@ export default function App() {
             <Outlet />
 
             
-             <h1>We are the fabulous Sheriffs!</h1>
+             {/* <h1>We are the fabulous Sheriffs!</h1> */}
 
             {/*<div className="card">
                 <button onClick={() => setCount((count) => count + 1)}>
