@@ -59,7 +59,6 @@ export default function SearchPage() {
         <>
             {/* SearchPage */}
 
-            {/* Search form */}
             <form onSubmit={handleSearch}>
                 <input
                     id="coctailSearch"
@@ -68,7 +67,10 @@ export default function SearchPage() {
                     onChange={(e) => setSearchTerm(e.target.value)}
                     placeholder="Enter cocktail name"
                 />
-                <button type="submit">Search</button>
+                {/* <button type="submit">Search</button> */}
+                <button id="searchButtonLoopIcon" type="submit">
+                    <i className="fas fa-search"></i> {/* Font Awesome search icon */}
+                </button>
             </form>
 
 
