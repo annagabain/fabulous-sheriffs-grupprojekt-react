@@ -1,5 +1,7 @@
 // import { getCocktailByName } from "../services/api";
 
+import { useState } from "react";
+
 
 
 // -----------------------------------------------------------------------------
@@ -20,7 +22,11 @@ export const getCocktailByName = async (name: string) => {
 
 export default function SearchPage() {
 
-    let searchTerm = "";
+    // let searchTerm = "";
+
+    const [searchTerm, setSearchTerm] = useState<string>('');
+    const [fetchedCocktailName, setCocktailName] = useState<string>('');
+
 
 
     const handleSearch = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -28,14 +34,17 @@ export default function SearchPage() {
 
         console.log("Search Term:", searchTerm);
 
-        const cocktailName = await getCocktailByName('bloody mary');
-        console.log("Hardcoded API Cocktail Name:", cocktailName);
+        const fetchedCocktailName = await getCocktailByName('bloody mary');
+        console.log("Hardcoded API Cocktail Name:", fetchedCocktailName);
+
 
         // Compare the hardcoded cocktail name with the user's search term
-        if (cocktailName.toLowerCase() === searchTerm.toLowerCase()) {
-            console.log("Match found! The cocktail name is:", cocktailName);
+        if (fetchedCocktailName.toLowerCase() === searchTerm.toLowerCase()) {
+            console.log("Match found! The cocktail name is:", fetchedCocktailName);
+            setCocktailName(fetchedCocktailName);
+
         } else {
-            console.log("No match found.", cocktailName);
+            console.log("No match found.");
         }
     };
 
@@ -49,14 +58,15 @@ export default function SearchPage() {
                 <input
                     id="coctailSearch"
                     type="text"
-                    onChange={(e) => { searchTerm = e.target.value; }}
+                    onChange={(e) => setSearchTerm(e.target.value)}
                     placeholder="Enter cocktail name"
                 />
                 <button type="submit">Search</button>
             </form>
 
-            {/* Dummy data logging */}
-            <p>Check the console for the search term and API response.</p>
+
+            {/* Display search results */}
+            <p>Search Result: {fetchedCocktailName ? fetchedCocktailName: "No match found."}</p>
 
         </>
     )
