@@ -1,59 +1,46 @@
-// import { getCocktailByName } from "../services/api";
-
 import { useState } from "react";
-
-
-
-// -----------------------------------------------------------------------------
-// -----------------------------------------------------------------------------
-
-// DUMMY FUNCTION FOR TESTING, the real one will be imported from the api.ts file
-
-export const getCocktailByName = async (name: string) => {
-    return name;
-};
-
-// -----------------------------------------------------------------------------
-// -----------------------------------------------------------------------------
-
-
-
+import { getCocktailByName } from "../services/api";
 
 
 export default function SearchPage() {
-
-    // let searchTerm = "";
-
     const [searchTerm, setSearchTerm] = useState<string>('');
-    const [fetchedCocktailName, setCocktailName] = useState<string>('');
-
-
+    const [fetchedCocktailNames, setCocktailName] = useState<any[]>([]);
 
     const handleSearch = async (e: React.FormEvent<HTMLFormElement>) => {
-      
         e.preventDefault();
-        
-      
 
-        console.log("Search Term:", searchTerm);
+        // console.log("Search Term:", searchTerm);
 
-        const fetchedCocktailName = await getCocktailByName('bloody mary');
-        console.log("Hardcoded API Cocktail Name:", fetchedCocktailName);
+        try {
+            const result = await getCocktailByName(searchTerm);
 
+            // Check if result is an array with at least one object
+            if (Array.isArray(result) && result.length > 0) {
+                const cocktails = result;
+                const matchingCocktails = cocktails.filter(cocktail =>
+                    cocktail.strDrink.toLowerCase().includes(searchTerm.toLowerCase())
+                );
 
-        // Compare the hardcoded cocktail name with the user's search term
-        if (fetchedCocktailName.toLowerCase() === searchTerm.toLowerCase()) {
-            console.log("Match found! The cocktail name is:", fetchedCocktailName);
-            setCocktailName(fetchedCocktailName);
-
-        } else {
-            console.log("No match found.");
-            setCocktailName('');
+                if (matchingCocktails.length > 0) {
+                    console.log("Matches found:", matchingCocktails);
+                    // Set the matching cocktails to be displayed
+                    setCocktailName(matchingCocktails);
+                } else {
+                    console.log("No match found.");
+                    setCocktailName([]);
+                }
+            } else {
+                console.log("Result is not in the expected format.");
+                setCocktailName([]);
+            }
+        } catch (error) {
+            console.error("Error fetching cocktail:", error);
+            setCocktailName([]);
         }
-    // Clear the input field
-    setSearchTerm('');
-    };
 
+        // Clear the input field
+        // setSearchTerm('');
+    };
 
     return (
         <>
@@ -67,17 +54,27 @@ export default function SearchPage() {
                     onChange={(e) => setSearchTerm(e.target.value)}
                     placeholder="Enter cocktail name"
                 />
-                {/* <button type="submit">Search</button> */}
                 <button id="searchButtonLoopIcon" type="submit">
                     <i className="fas fa-search"></i> {/* Font Awesome search icon */}
                 </button>
             </form>
 
-
             {/* Display search results */}
-            <p>Search Result: {fetchedCocktailName ? fetchedCocktailName : "No match found."}</p>
-
+            <div className="card-container">
+                {fetchedCocktailNames.length > 0 ? (
+                    fetchedCocktailNames.map((cocktail, index) => (
+                        <div className="card" key={index}>
+                            <img src={cocktail.strDrinkThumb} alt={cocktail.strDrink} className="card-image" />
+                            <div className="card-content">
+                                <h3>{cocktail.strDrink}</h3>
+                                {/* <p>{cocktail.strInstructions}</p> */}
+                            </div>
+                        </div>
+                    ))
+                ) : (
+                    <p>No match found.</p>
+                )}
+            </div>
         </>
-    )
-};
-
+    );
+}
