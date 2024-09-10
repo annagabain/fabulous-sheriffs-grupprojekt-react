@@ -9,7 +9,6 @@ export const router = createBrowserRouter(
         <Route path="/" element={<App />}>
            <Route index element={<LandingPage />} />
            <Route path='search-page' element={<SearchPage />} />
-           <Route path='search-page' element={<SearchPage />} />
            <Route path='favorites-page' element={<FavoritesPage />} />
         </Route>
     )
