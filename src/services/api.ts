@@ -11,15 +11,19 @@
 
 // EXAMPLE!!!! 
 // Function to fetch a cocktail by name
-// export const getCocktailByName = async (name: string) => {
-//     try {
-//         const response = await api.get(`/search.php?s=${name}`);
-//         return response.data.drinks;
-//     } catch (error) {
-//         console.error("Error fetching cocktail by name:", error);
-//         throw error;
-//     }
-// };
+export const getCocktailByName = async (name: string) => {
+    try {
+        // const response = await api.get(`/search.php?s=${name}`);
+        name = 'bloody mary';
+
+        const response = name;
+
+        return response;
+    } catch (error) {
+        console.error("Error fetching cocktail by name:", error);
+        throw error;
+    }
+};
 
 
 
