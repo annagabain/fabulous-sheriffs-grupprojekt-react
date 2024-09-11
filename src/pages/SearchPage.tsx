@@ -1,10 +1,23 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { getCocktailByName } from "../services/api";
+import GlobalStateContext from '../context/GlobalStateContext';
+import CocktailCard  from "../components/CocktailCard";
 
 
 export default function SearchPage() {
+
     const [searchTerm, setSearchTerm] = useState<string>('');
-    const [fetchedCocktailNames, setCocktailName] = useState<any[]>([]);
+    // const [fetchedCocktailNames, setCocktailName] = useState<any[]>([]);
+
+    //this line alone throws an error, but works anyway, replaced with the context check below
+    // const {searchResults, setSearchResults} = useContext(GlobalStateContext); 
+    const context = useContext(GlobalStateContext);
+    if (!context) {
+        throw new Error("GlobalStateContext must be used within a GlobalStateProvider");
+    }
+    const { searchResults, setSearchResults } = context;
+
+
 
     const handleSearch = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -17,25 +30,33 @@ export default function SearchPage() {
             // Check if result is an array with at least one object
             if (Array.isArray(result) && result.length > 0) {
                 const cocktails = result;
-                const matchingCocktails = cocktails.filter(cocktail =>
-                    cocktail.strDrink.toLowerCase().includes(searchTerm.toLowerCase())
+                const matchingCocktails = cocktails.filter(drink =>
+                    drink.strDrink.toLowerCase().includes(searchTerm.toLowerCase())
                 );
 
                 if (matchingCocktails.length > 0) {
                     console.log("Matches found:", matchingCocktails);
+
+
                     // Set the matching cocktails to be displayed
-                    setCocktailName(matchingCocktails);
+                    // setCocktailName(matchingCocktails);
+                    setSearchResults(matchingCocktails)
                 } else {
                     console.log("No match found.");
-                    setCocktailName([]);
+                    // setCocktailName([]);
+                    setSearchResults([]);
                 }
             } else {
                 console.log("Result is not in the expected format.");
-                setCocktailName([]);
+                // setCocktailName([]);
+                setSearchResults([]);
+
             }
         } catch (error) {
-            console.error("Error fetching cocktail:", error);
-            setCocktailName([]);
+            console.error("Error fetching drink:", error);
+            // setCocktailName([]);
+            setSearchResults([]);
+
         }
 
         // Clear the input field
@@ -52,7 +73,7 @@ export default function SearchPage() {
                     type="text"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    placeholder="Enter cocktail name"
+                    placeholder="Enter drink name"
                 />
                 <button id="searchButtonLoopIcon" type="submit">
                     <i className="fas fa-search"></i> {/* Font Awesome search icon */}
@@ -61,18 +82,24 @@ export default function SearchPage() {
 
             {/* Display search results */}
             <div className="card-container">
-                {fetchedCocktailNames.length > 0 ? (
-                    fetchedCocktailNames.map((cocktail, index) => (
-                        <div className="card" key={index}>
-                            <img src={cocktail.strDrinkThumb} alt={cocktail.strDrink} className="card-image" />
-                            <div className="card-content">
-                                <h3>{cocktail.strDrink}</h3>
-                                {/* <p>{cocktail.strInstructions}</p> */}
-                            </div>
-                        </div>
-                    ))
-                ) : (
-                    <>
+                {
+                    searchResults.length > 0 ? (
+                        searchResults.map((drink, index) => (
+
+                            <CocktailCard key={index} drink={drink} />
+
+                            // <div className="card" key={index}>
+                            //     <img src={drink.strDrinkThumb} alt={drink.strDrink} className="card-image" />
+                            //     <div className="card-content">
+                            //         <h3>{drink.strDrink}</h3>
+                            //     </div>
+                            // </div>
+
+                            
+
+                        ))
+
+                    ) : (
                         <h2>No match found.
                             <img
                                 src='src/assets/pexels-badun-18782633.jpg'
@@ -80,10 +107,10 @@ export default function SearchPage() {
                                 style={{ width: '100%' }}
                             />
                         </h2>
-                    </>
+                    )
 
+                }
 
-                )}
             </div>
         </>
     );
