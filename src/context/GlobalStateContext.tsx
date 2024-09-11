@@ -7,9 +7,16 @@ interface GlobalStateContextType {
   setSearchResults: (drinks: Drink[]) => void;
   setSelectedCocktail: (drink: Drink) => void;
 }
-
+const defaultState: GlobalStateContextType = {
+  searchResults: [],
+  selectedCocktail: null,
+  setSearchResults: () => {},
+  setSelectedCocktail: () => {},
+};
 // Create the context
-const GlobalStateContext = createContext<GlobalStateContextType | undefined>(undefined);
+
+const GlobalStateContext = createContext<GlobalStateContextType>(defaultState);
+
 
 // Create a provider 
 export const GlobalStateProvider = ({ children }: { children: ReactNode }) => {
