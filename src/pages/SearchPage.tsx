@@ -10,12 +10,12 @@ export default function SearchPage() {
     // const [fetchedCocktailNames, setCocktailName] = useState<any[]>([]);
 
     //this line alone throws an error, but works anyway, replaced with the context check below
-    // const {searchResults, setSearchResults} = useContext(GlobalStateContext); 
-    const context = useContext(GlobalStateContext);
-    if (!context) {
-        throw new Error("GlobalStateContext must be used within a GlobalStateProvider");
-    }
-    const { searchResults, setSearchResults } = context;
+  const {searchResults, setSearchResults} = useContext(GlobalStateContext); 
+    // const context = useContext(GlobalStateContext);
+    // if (!context) {
+    //     throw new Error("GlobalStateContext must be used within a GlobalStateProvider");
+    // }
+    // const { searchResults, setSearchResults } = context;
 
 
 
