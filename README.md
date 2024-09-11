@@ -67,7 +67,7 @@ Mål: Skapa en sida för detaljerad information om cocktails och en favoritsida 
 - **Favorites Page**
   - Användare ska kunna spara sina favoritcocktails och visa dem på en separat sida.
   - Användare ska kunna ta bort favoriter.
-  - Favoriter ska lagras mhs useContext.
+  - Favoriter ska lagras mha useContext.
 
 Denna vecka ska ni fokusera på att implementera användning av React useContext för att hantera favoriterna mellan komponenter och React Router för navigering. Använd också useEffect för att hämta cocktailinformation baserat på URL-parametrar.
 

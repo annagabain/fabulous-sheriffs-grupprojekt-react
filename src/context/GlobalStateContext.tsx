@@ -14,7 +14,9 @@ const defaultState: GlobalStateContextType = {
   setSelectedCocktail: () => {},
 };
 // Create the context
+
 const GlobalStateContext = createContext<GlobalStateContextType>(defaultState);
+
 
 // Create a provider 
 export const GlobalStateProvider = ({ children }: { children: ReactNode }) => {
