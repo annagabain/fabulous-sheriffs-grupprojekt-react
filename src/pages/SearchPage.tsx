@@ -16,9 +16,32 @@ export default function SearchPage() {
     const { setSelectedCocktail } = useContext(GlobalStateContext);
     const navigate = useNavigate();
 
+
+
+   
+// Fetch all cocktails 
     useEffect(() => {
+        const fetchAllCocktails = async () => {
+            try {
+                const result = await getCocktailByName(''); 
+                if (Array.isArray(result) && result.length > 0) {
+                    setSearchResults(result);
+                } else {
+                    setSearchResults([]);
+                }
+            } catch (error) {
+                console.error("Error fetching all drinks:", error);
+                setSearchResults([]);
+            }
+        };
+
+        fetchAllCocktails();
+    }, []);
+
+     useEffect(() => {
         setDisplayedResults(searchResults.slice(0, 10));
     }, [searchResults]);
+
 
     const handlePageChange = (start: number, end: number) => {
         setDisplayedResults(searchResults.slice(start, end));
