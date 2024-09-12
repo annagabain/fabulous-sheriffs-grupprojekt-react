@@ -63,7 +63,7 @@ export default function SearchPage() {
 
 
 
-    const handleViewDetails = (drink: Drink) => {
+    const handleCocktailClick = (drink: Drink) => {
 
         setSelectedCocktail(drink);
         // Navigate to the details page using the cocktail's ID
@@ -93,13 +93,9 @@ export default function SearchPage() {
                     searchResults.length > 0 ? (
 
                         displayedResults.map((drink, index) => (
-                            <section key={index}>
-
-                                <CocktailCard drink={drink} />
-                                <button onClick={() => handleViewDetails(drink)} className='view-more'>
-                                    View Details
-                                </button>
-                            </section>
+                            <section key={index} onClick={() => handleCocktailClick(drink)} style={{ cursor: 'pointer' }}>
+                            <CocktailCard drink={drink} />
+                        </section>
 
                         ))
 
