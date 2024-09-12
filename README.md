@@ -1,8 +1,14 @@
 # Cocktail-Wiki
 
 
-<img src="src\assets\landing-page-wireframe.png">
-<img src="src\assets\search-page-wireframe.png">
+<img src="src\assets\landing-page-mockup.png">
+<img src="src\assets\search-page-mockup.png">
+<img src="src\assets\favorites-page-mockup.png">
+<img src="src\assets\cocktail-details-page-mockup.png">
+<img src="src\assets\ingredient-details-page-mockup.png">
+<img src="src\assets\404-page-mockup.png">
+
+
 
 
 
