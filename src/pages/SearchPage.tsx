@@ -1,37 +1,31 @@
 import { useContext, useEffect, useState } from "react";
 import { getCocktailByName } from "../services/api";
 import GlobalStateContext from '../context/GlobalStateContext';
-import CocktailCard  from "../components/CocktailCard";
+import CocktailCard from "../components/CocktailCard";
 import { Drink } from "../type";
 import { Pagination } from "../components/Pagination";
+import { useNavigate } from 'react-router-dom';
+
 
 
 export default function SearchPage() {
 
     const [searchTerm, setSearchTerm] = useState<string>('');
-    // const [fetchedCocktailNames, setCocktailName] = useState<any[]>([]);
-
-    //this line alone throws an error, but works anyway, replaced with the context check below
-  const {searchResults, setSearchResults} = useContext(GlobalStateContext); 
-    // const context = useContext(GlobalStateContext);
-    // if (!context) {
-    //     throw new Error("GlobalStateContext must be used within a GlobalStateProvider");
-    // }
-    // const { searchResults, setSearchResults } = context;
-
+    const { searchResults, setSearchResults } = useContext(GlobalStateContext);
     const [displayedResults, setDisplayedResults] = useState<Drink[]>([]);
+    const { setSelectedCocktail } = useContext(GlobalStateContext);
+    const navigate = useNavigate();
+
     useEffect(() => {
         setDisplayedResults(searchResults.slice(0, 10));
     }, [searchResults]);
-    
-    const handlePageChange = ( start: number, end: number ) => {
+
+    const handlePageChange = (start: number, end: number) => {
         setDisplayedResults(searchResults.slice(start, end));
     };
 
     const handleSearch = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
-        // console.log("Search Term:", searchTerm);
 
         try {
             const result = await getCocktailByName(searchTerm);
@@ -48,28 +42,32 @@ export default function SearchPage() {
 
 
                     // Set the matching cocktails to be displayed
-                    // setCocktailName(matchingCocktails);
                     setSearchResults(matchingCocktails)
                 } else {
                     console.log("No match found.");
-                    // setCocktailName([]);
                     setSearchResults([]);
                 }
             } else {
                 console.log("Result is not in the expected format.");
-                // setCocktailName([]);
                 setSearchResults([]);
 
             }
         } catch (error) {
             console.error("Error fetching drink:", error);
-            // setCocktailName([]);
             setSearchResults([]);
-
         }
 
         // Clear the input field
         // setSearchTerm('');
+    };
+
+
+
+    const handleCocktailClick = (drink: Drink) => {
+
+        setSelectedCocktail(drink);
+        // Navigate to the details page using the cocktail's ID
+        navigate(`/cocktail/${drink.idDrink}`);
     };
 
     return (
@@ -93,19 +91,11 @@ export default function SearchPage() {
             <div className="card-container">
                 {
                     searchResults.length > 0 ? (
-                        // searchResults.map((drink, index) => (
+
                         displayedResults.map((drink, index) => (
-
-                            <CocktailCard key={index} drink={drink} />
-
-                            // <div className="card" key={index}>
-                            //     <img src={drink.strDrinkThumb} alt={drink.strDrink} className="card-image" />
-                            //     <div className="card-content">
-                            //         <h3>{drink.strDrink}</h3>
-                            //     </div>
-                            // </div>
-
-                            
+                            <section key={index} onClick={() => handleCocktailClick(drink)} style={{ cursor: 'pointer' }}>
+                            <CocktailCard drink={drink} />
+                        </section>
 
                         ))
 
