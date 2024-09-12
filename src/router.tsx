@@ -3,6 +3,7 @@ import App from "./App";
 import SearchPage from "./pages/SearchPage";
 import LandingPage from "./pages/LandingPage";
 import FavoritesPage from "./pages/FavoritesPage";
+import CocktailDetailsPage from "./pages/CocktailDetailsPage";
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
@@ -10,6 +11,7 @@ export const router = createBrowserRouter(
            <Route index element={<LandingPage />} />
            <Route path='search-page' element={<SearchPage />} />
            <Route path='favorites-page' element={<FavoritesPage />} />
+           <Route path='cocktail/:id' element={<CocktailDetailsPage />} />
         </Route>
     )
 );
