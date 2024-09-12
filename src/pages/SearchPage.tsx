@@ -1,7 +1,9 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { getCocktailByName } from "../services/api";
 import GlobalStateContext from '../context/GlobalStateContext';
 import CocktailCard  from "../components/CocktailCard";
+import { Drink } from "../type";
+import { Pagination } from "../components/Pagination";
 
 
 export default function SearchPage() {
@@ -17,7 +19,14 @@ export default function SearchPage() {
     // }
     // const { searchResults, setSearchResults } = context;
 
-
+    const [displayedResults, setDisplayedResults] = useState<Drink[]>([]);
+    useEffect(() => {
+        setDisplayedResults(searchResults.slice(0, 10));
+    }, [searchResults]);
+    
+    const handlePageChange = ( start: number, end: number ) => {
+        setDisplayedResults(searchResults.slice(start, end));
+    };
 
     const handleSearch = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -84,7 +93,8 @@ export default function SearchPage() {
             <div className="card-container">
                 {
                     searchResults.length > 0 ? (
-                        searchResults.map((drink, index) => (
+                        // searchResults.map((drink, index) => (
+                        displayedResults.map((drink, index) => (
 
                             <CocktailCard key={index} drink={drink} />
 
@@ -112,6 +122,7 @@ export default function SearchPage() {
                 }
 
             </div>
+            <Pagination resultsPerPage={10} onPageChange={handlePageChange} />
         </>
     );
 }
