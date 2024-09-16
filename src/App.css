@@ -58,6 +58,7 @@
   padding: 16px;
 }
 
+/*Cocktail card*/
 .card {
   background-color: #E5BEBE;
   padding: 2rem 1rem;
@@ -66,14 +67,33 @@
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s, box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-
-
+ 
 .card:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
-
+ 
+.favorite-icon {
+  margin:0;
+  padding:0.2rem;
+  background-color: transparent;
+  cursor: pointer;
+  align-self: self-end;
+}
+ 
+.favorite-icon svg {
+  font-size: 1.5rem;
+}
+ 
+button.favorite-icon:hover {
+  background-color: transparent;
+}
+ 
 .card-image {
   width: 100%;
   height: auto;
