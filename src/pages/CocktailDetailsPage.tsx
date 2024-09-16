@@ -2,8 +2,10 @@ import GlobalStateContext from "../context/GlobalStateContext";
 import { useContext } from "react";
 import CocktailCard from "../components/CocktailCard";
 import { Drink } from "../type";
+import { useNavigate } from "react-router-dom";
 
 export default function CocktailDetailsPage() {
+    const navigate = useNavigate();
     const { selectedCocktail } = useContext(GlobalStateContext);
     if (!selectedCocktail) return;
 
@@ -15,8 +17,14 @@ export default function CocktailDetailsPage() {
         )
         .map((key) => ({
             ingredient: selectedCocktail[key as keyof Drink],
-            measure: selectedCocktail[`strMeasure${key.slice(13)}` as keyof Drink],
+            measure:
+                selectedCocktail[`strMeasure${key.slice(13)}` as keyof Drink],
         }));
+
+    const handleIngredientClick = (ingredient: string | null) => {
+        if (!ingredient) return;
+        navigate(`/ingredient/${ingredient}`);
+    };
 
     return (
         <>
@@ -34,7 +42,7 @@ export default function CocktailDetailsPage() {
                         <h3>Ingredients</h3>
                         {ingredients.map((ing, i) => {
                             return (
-                                <p key={i}>
+                                <p key={i} onClick={() => handleIngredientClick(ing.ingredient)}>
                                     {ing.ingredient}, {ing.measure}
                                 </p>
                             );
