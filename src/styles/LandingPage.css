@@ -1,0 +1,28 @@
+/*Landing page styles*/
+
+.random-cocktail-container {
+    margin: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .cocktail-card {
+    padding: 1rem;
+    width: 30%;
+  }
+  
+  button {
+    margin: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: #cf539b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #b80b70;
+  }

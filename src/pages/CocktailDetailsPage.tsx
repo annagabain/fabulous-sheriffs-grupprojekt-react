@@ -30,6 +30,8 @@ export default function CocktailDetailsPage() {
 
     return (
         <>
+         <section className="main-content-container">
+        
             {/* <h2 className="title">{selectedCocktail.strDrink}</h2> */}
 
 
@@ -59,6 +61,7 @@ export default function CocktailDetailsPage() {
                     </section>
                 </div>
             </article>
+            </section>
         </>
     );
 }

@@ -21,12 +21,12 @@ export default function SearchPage() {
 
 
 
-   
-// Fetch all cocktails 
+
+    // Fetch all cocktails 
     useEffect(() => {
         const fetchAllCocktails = async () => {
             try {
-                const result = await getCocktailByName(''); 
+                const result = await getCocktailByName('');
                 if (Array.isArray(result) && result.length > 0) {
                     setSearchResults(result);
                 } else {
@@ -41,7 +41,7 @@ export default function SearchPage() {
         fetchAllCocktails();
     }, []);
 
-     useEffect(() => {
+    useEffect(() => {
         setDisplayedResults(searchResults.slice(0, 10));
     }, [searchResults]);
 
@@ -98,47 +98,52 @@ export default function SearchPage() {
 
     return (
         <>
-            {/* SearchPage */}
+            <section className="main-content-container">
 
-            <form onSubmit={handleSearch}>
-                <input
-                    id="coctailSearch"
-                    type="text"
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    placeholder="Enter drink name"
-                />
-                <button id="searchButtonLoopIcon" type="submit">
-                    <i className="fas fa-search"></i> {/* Font Awesome search icon */}
-                </button>
-            </form>
+                {/* SearchPage */}
 
-            {/* Display search results */}
-            <div className="card-container">
-                {
-                    searchResults.length > 0 ? (
+                <form onSubmit={handleSearch}>
+                    <input
+                        id="coctailSearch"
+                        type="text"
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        placeholder="Enter drink name"
+                    />
+                    <button id="searchButtonLoopIcon" type="submit">
+                        <i className="fas fa-search"></i> {/* Font Awesome search icon */}
+                    </button>
+                </form>
 
-                        displayedResults.map((drink, index) => (
-                            <section key={index} onClick={() => handleCocktailClick(drink)} style={{ cursor: 'pointer' }}>
-                            <CocktailCard drink={drink} />
-                        </section>
+                {/* Display search results */}
+                <div className="card-container">
+                    {
+                        searchResults.length > 0 ? (
 
-                        ))
+                            displayedResults.map((drink, index) => (
+                                <section key={index} onClick={() => handleCocktailClick(drink)} style={{ cursor: 'pointer' }}>
+                                    <CocktailCard drink={drink} />
+                                </section>
 
-                    ) : (
-                        <h2>No match found.
-                            <img
-                                src='src/assets/pexels-badun-18782633.jpg'
-                                alt='empty glass'
-                                style={{ width: '100%' }}
-                            />
-                        </h2>
-                    )
+                            ))
 
-                }
+                        ) : (
+                            <h2>No match found.
+                                <img
+                                    src='src/assets/pexels-badun-18782633.jpg'
+                                    alt='empty glass'
+                                    style={{ width: '100%' }}
+                                />
+                            </h2>
+                        )
 
-            </div>
-            <Pagination resultsPerPage={10} onPageChange={handlePageChange} />
+                    }
+
+
+                </div>
+                <Pagination resultsPerPage={10} onPageChange={handlePageChange} />
+            </section>
+
         </>
     );
 }

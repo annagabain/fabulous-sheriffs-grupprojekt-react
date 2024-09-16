@@ -44,6 +44,7 @@ export default function LandingPage() {
     };
 
     return (
+        <section className="main-content-container">
         <section className='random-cocktail-container'>
             {/* Conditional rendering: to make sure that the cocktail card is only rendered when randomCocktail is not null */}
             {randomCocktail && (
@@ -57,6 +58,6 @@ export default function LandingPage() {
                     </section>
                 </>
             )}
-        </section>
+        </section></section>
     );
 }
