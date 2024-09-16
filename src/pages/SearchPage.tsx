@@ -6,6 +6,9 @@ import { Drink } from "../type";
 import { Pagination } from "../components/Pagination";
 import { useNavigate } from 'react-router-dom';
 
+import '../styles/SearchPage.css'
+
+
 
 
 export default function SearchPage() {

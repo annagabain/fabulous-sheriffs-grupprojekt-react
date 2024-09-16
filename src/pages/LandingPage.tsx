@@ -4,6 +4,8 @@ import { Drink } from '../type';
 import { getRandomCocktail } from '../services/api';
 import CocktailCard from '../components/CocktailCard';
 import { useNavigate } from 'react-router-dom';
+import '../styles/LandingPage.css'
+
 
 export default function LandingPage() {
     // State to store the fetched random cocktail

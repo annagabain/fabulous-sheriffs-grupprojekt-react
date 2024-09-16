@@ -3,6 +3,8 @@ import { useContext } from "react";
 import CocktailCard from "../components/CocktailCard";
 import { Drink } from "../type";
 import { useNavigate } from "react-router-dom";
+import '../styles/CocktailDetailsPage.css'
+
 
 export default function CocktailDetailsPage() {
     const navigate = useNavigate();
@@ -28,10 +30,13 @@ export default function CocktailDetailsPage() {
 
     return (
         <>
-            <h2 className="title">{selectedCocktail.strDrink}</h2>
+            {/* <h2 className="title">{selectedCocktail.strDrink}</h2> */}
+
+
             <article className="cocktail-details">
                 <CocktailCard drink={selectedCocktail} />
-                <div className="details-text">
+                <div className="details-text">    
+                    <h2 className="title">{selectedCocktail.strDrink}</h2>
                     <div className="details-tags">
                         <p>{selectedCocktail.strCategory}</p>
                         <p>{selectedCocktail.strTags?.split(",").join(", ")}</p>

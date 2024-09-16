@@ -7,10 +7,14 @@
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
 
+  --accent-red: #bc2433;
+
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
 }
 
 a {
@@ -24,12 +28,14 @@ a:hover {
 }
 
 body {
+  background-image: url('./assets/background-image-ice.png') ;
   margin: 0;
   display: flex;
   /* place-items: center; */
   min-width: 320px;
   min-height: 100vh;
 }
+
 
 h1 {
   font-size: 3.2em;
@@ -73,22 +79,3 @@ button:focus-visible {
 }
 
 
-/* search input field */
-#coctailSearch {
-  border: 1px solid #dbdce0;
-  border-radius: 15px;
-  height: 30px;
-  padding: 0.2em 2em;
-  margin-right: -4rem;
-  margin-top: 5rem;
-  margin-bottom: 3rem;
-  background-color: #e9d2d2;
-  transition: border-color 0.25s;
-}
-
-#searchButtonLoopIcon {
-  background-color: transparent;
-  border-radius: 15px;
-  height: 32px;
-  padding: 0.2rem 2rem;
-}
