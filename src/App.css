@@ -14,16 +14,47 @@
 
 .header {
   width: 100%;
-  background-color: rgba(134, 134, 134, 0.247);
-  padding: 1rem 2rem;
-  display: flex;
-  gap: 2rem;
+  height: 80px;
+  background: linear-gradient(to left, #F28621, #F3E3E3);
+  padding: 1rem 3rem;
+  display: grid;
+
+  grid-template-columns: 2fr 2fr 2fr 2fr 2fr 2fr;
+  align-items: center;
+
+
+  .logo {
+    height: 70px;
+    align-self: baseline;
+    grid-column: 1;
+  }
+
+  >*:nth-child(2) {
+    grid-column: 5;
+  }
+
+  >*:nth-child(3) {
+    grid-column: 6;
+ 
+  }
+
+  a {
+    color: white;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: antiquewhite;
+  }
+
+
 }
+
 
 .main-content-container {
   border: 5px solid var(--accent-red);
   border-radius: 15px;
-  background-color: rgb(211, 192, 255);
+  background-color: var(--main-container-background);
   margin: 4rem;
 }
 
@@ -55,4 +86,3 @@
   height: auto;
   object-fit: cover;
 }
-

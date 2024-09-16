@@ -1,5 +1,10 @@
 /*Landing page styles*/
 
+/* .logo{
+  height: 250px!important; 
+
+} */
+
 .random-cocktail-container {
     margin: 4rem;
     display: flex;
@@ -9,20 +14,23 @@
   
   .cocktail-card {
     padding: 1rem;
-    width: 30%;
+    width: 40%;
   }
   
-  button {
-    margin: 0.5rem;
-    padding: 0.5rem 1rem;
-    background-color: #cf539b;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  .cocktail-card {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
   }
   
-  button:hover {
-    background-color: #b80b70;
+  .view-more,
+  .show-another-cocktail {
+    margin-top: 1rem; 
   }
+  
+  .show-another-cocktail {
+    margin-top: 0.5rem; 
+  }
+
+
+  
