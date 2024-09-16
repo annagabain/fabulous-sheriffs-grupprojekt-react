@@ -5,8 +5,10 @@ export default function IngredientDetailsPage() {
 
     return (
         <>
+         <section className="main-content-container">
             <h2>Ingredient Details Page</h2>
             <p>{ingredient}</p>
+            </section>
         </>
     );
 }
