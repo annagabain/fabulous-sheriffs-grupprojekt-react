@@ -18,25 +18,30 @@
   background: linear-gradient(to left, #F28621, #F3E3E3);
   padding: 1rem 3rem;
   display: grid;
-  grid-template-columns: 2fr 2fr 2fr 2fr 2fr 2fr;
+  grid-template-columns: 1fr 2fr 2fr 2fr 2fr 2fr 1fr 1fr;
   align-items: center;
+  gap: 1rem;
 
   .logo {
     height: 70px;
     align-self: baseline;
     grid-column: 1;
   }
+
   >*:nth-child(2) {
-    grid-column: 5;
+    grid-column: 7;
   }
+
   >*:nth-child(3) {
-    grid-column: 6;
- 
+    grid-column: 8;
+
   }
+
   a {
     color: white;
     text-decoration: none;
   }
+
   a:hover {
     color: antiquewhite;
   }
@@ -45,10 +50,11 @@
 
 
 .main-content-container {
-  border: 5px solid var(--accent-red);
+  border: 0.2rem solid var(--accent-red);
   border-radius: 15px;
   background-color: var(--main-container-background);
-  margin: 4rem;
+  margin: 1rem;
+
 }
 
 .card-container {
@@ -64,7 +70,7 @@
   border: 1px solid #ddd;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px (rgba(0, 0, 0, 0.1));
   transition: transform 0.3s, box-shadow 0.3s;
 }
 

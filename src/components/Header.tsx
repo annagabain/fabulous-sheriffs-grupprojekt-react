@@ -9,8 +9,8 @@ export default function Header() {
     return (
         <nav className={headerClass}>
             <NavLink to="/"><img src='src/assets/logo-fabulous-sheriffs.png' className="logo" alt="Logo" /></NavLink>
-            <NavLink to="search-page">Search Page</NavLink>
-            <NavLink to="favorites-page">Favorites Page</NavLink>
+            <NavLink to="search-page">Search</NavLink>
+            <NavLink to="favorites-page">Favorites</NavLink>
         </nav>
     );
 }
