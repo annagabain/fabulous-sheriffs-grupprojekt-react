@@ -1,26 +1,42 @@
-import GlobalStateContext from "../context/GlobalStateContext";
-import { useContext } from "react";
+import { useEffect, useState } from "react";
 import CocktailCard from "../components/CocktailCard";
 import { Drink } from "../type";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import '../styles/CocktailDetailsPage.css'
+import { getCocktailDetails } from "../services/api";
 
 
 export default function CocktailDetailsPage() {
     const navigate = useNavigate();
-    const { selectedCocktail } = useContext(GlobalStateContext);
-    if (!selectedCocktail) return;
+    const { id } = useParams();
+    const [cocktail, setCocktail] = useState<Drink | null>(null);
 
-    const ingredients = Object.keys(selectedCocktail)
+    useEffect(() => {
+        if (!id) return;
+        async function fetchCocktailDetails(id: string) {
+            try {
+                const result = await getCocktailDetails(parseInt(id));
+                if (result) setCocktail(result);
+                else console.error('No cocktail found for this ID');
+            } catch (error) {
+                console.error('Error fetching cocktail:', error);
+            }
+        }
+        fetchCocktailDetails(id);
+    }, []);
+
+    if (!cocktail) return;
+
+    const ingredients = Object.keys(cocktail)
         .filter(
             (key) =>
                 key.startsWith("strIngredient") &&
-                selectedCocktail[key as keyof Drink]
+                cocktail[key as keyof Drink]
         )
         .map((key) => ({
-            ingredient: selectedCocktail[key as keyof Drink],
+            ingredient: cocktail[key as keyof Drink],
             measure:
-                selectedCocktail[`strMeasure${key.slice(13)}` as keyof Drink],
+                cocktail[`strMeasure${key.slice(13)}` as keyof Drink],
         }));
 
     const handleIngredientClick = (ingredient: string | null) => {
@@ -36,14 +52,14 @@ export default function CocktailDetailsPage() {
 
 
             <article className="cocktail-details">
-                <CocktailCard drink={selectedCocktail} />
+                <CocktailCard drink={cocktail} />
                 <div className="details-text">    
-                    <h2 className="title">{selectedCocktail.strDrink}</h2>
+                    <h2 className="title">{cocktail.strDrink}</h2>
                     <div className="details-tags">
-                        <p>{selectedCocktail.strCategory}</p>
-                        <p>{selectedCocktail.strTags?.split(",").join(", ")}</p>
-                        <p>{selectedCocktail.strGlass}</p>
-                        <p>{selectedCocktail.strAlcoholic}</p>
+                        <p>{cocktail.strCategory}</p>
+                        <p>{cocktail.strTags?.split(",").join(", ")}</p>
+                        <p>{cocktail.strGlass}</p>
+                        <p>{cocktail.strAlcoholic}</p>
                     </div>
                     <section className="ingredients">
                         <h3>Ingredients</h3>
@@ -57,7 +73,7 @@ export default function CocktailDetailsPage() {
                     </section>
                     <section className="instructions">
                         <h3>Instructions</h3>
-                        <p>{selectedCocktail.strInstructions}</p>
+                        <p>{cocktail.strInstructions}</p>
                     </section>
                 </div>
             </article>
