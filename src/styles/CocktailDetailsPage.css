@@ -1,0 +1,27 @@
+/* Details Page */
+.cocktail-details {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  text-align: start;
+  gap: 2rem;
+
+
+}
+
+.details-text {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+}
+
+.title {
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.details-tags {
+  display: flex;
+  gap: 1rem;
+}

@@ -1,0 +1,29 @@
+/* search input field */
+#coctailSearch {
+  border: 1px solid #dbdce0;
+  border-radius: 15px;
+  height: 30px;
+  padding: 0.2em 2em;
+  margin-right: -4rem;
+  margin-top: 5rem;
+  margin-bottom: 3rem;
+  background-color: #e9d2d2;
+  transition: border-color 0.25s;
+}
+
+#searchButtonLoopIcon {
+  color: var(--accent-red);
+  background-color: transparent;
+  border-radius: 15px;
+  height: 32px;
+  padding: 0.2rem 2rem;
+}
+
+.card-container {
+  display: grid;
+  /* grid-template-columns: repeat(5, minmax(200px, 1fr)); */
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  padding: 16px;
+
+}

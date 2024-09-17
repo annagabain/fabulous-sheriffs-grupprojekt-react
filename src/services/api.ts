@@ -30,17 +30,19 @@ export const getRandomCocktail = async () => {
     }
 };
 
-// export const getCocktailDetails = async (idDrink: number) => {
-//     try {
-//         const response = await fetch(
-//             `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${idDrink}`
-//         );
-//         const data = await response.json();
-//         console.log(data.drinks[0]);
+export const getCocktailDetails = async (idDrink: number) => {
+    try {
+        const response = await fetch(
+            `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${idDrink}`
+        );
+        const data = await response.json();
+        const drink: Drink = data.drinks[0];
 
-//         return data.drinks[0];
-//     } catch (error) {
-//         console.error("Error fetching random cocktail:", error);
-//         throw error;
-//     }
-// };
+        console.log(drink);
+
+        return drink;
+    } catch (error) {
+        console.error("Error fetching cocktail details:", error);
+        throw error;
+    }
+};
