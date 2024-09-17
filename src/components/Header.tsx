@@ -1,4 +1,5 @@
 import { NavLink, useLocation } from "react-router-dom";
+import logo from '../assets/logo-fabulous-sheriffs.png';
 
 export default function Header() {
     const location = useLocation(); //  the current route location
@@ -8,7 +9,7 @@ export default function Header() {
 
     return (
         <nav className={headerClass}>
-            <NavLink to="/"><img src='src/assets/logo-fabulous-sheriffs.png' className="logo" alt="Logo" /></NavLink>
+            <NavLink to="/"><img src={logo} className="logo" alt="Logo" /></NavLink>
             <NavLink to="search-page">Search Page</NavLink>
             <NavLink to="favorites-page">Favorites Page</NavLink>
         </nav>
