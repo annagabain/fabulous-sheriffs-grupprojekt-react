@@ -59,6 +59,7 @@
 }
 
 .cocktail-card {
+  position: relative;
   margin-top: 6rem;
   /* padding: 0.1rem; */
   display: flex;
@@ -67,7 +68,11 @@
   max-width: 400px;
   max-height: 405px;
 
+  /* width: 400px;
+  height: 405px; */
+
   .card {
+    position: relative;
     border-radius: 0.5rem 0.5rem 4rem 4rem;
     padding-top: 1.2rem;
   }
@@ -87,4 +92,25 @@
 
 .show-another-cocktail {
   margin-top: 0.5rem;
+}
+
+ 
+  
+.landing-page .favorite-icon {
+  position: absolute; 
+  bottom: 2.5rem;
+  /* bottom: -0.6rem; */
+  /* right: 7rem;  */
+  right: 1rem; 
+  background: transparent;
+  border-radius: 50%; 
+  border-color: var(--main-container-background);
+  padding: 0.5rem; 
+  cursor: pointer;
+  z-index: 100; 
+
+}
+
+.landing-page .card:hover {
+  transform: none;
 }

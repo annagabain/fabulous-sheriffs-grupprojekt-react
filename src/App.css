@@ -84,6 +84,11 @@
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
  
+
+
+
+/* Favourite icon */
+
 .favorite-icon {
   margin:0;
   padding:0.2rem;
@@ -94,11 +99,39 @@
  
 .favorite-icon svg {
   font-size: 1.5rem;
+  /* color: var(--button-color); */
 }
- 
+
+button.favorite-icon {
+  margin: 0;
+  padding: 0.2rem;
+  background-color: transparent;
+  border: none; 
+  cursor: pointer;
+  align-self: self-end;
+  outline: none; 
+}
+
 button.favorite-icon:hover {
   background-color: transparent;
+  border: none;
 }
+
+button.favorite-icon:hover:active {
+  background-color: transparent;
+
+}
+
+/* Remove focus outline when clicked or focused */
+button.favorite-icon:focus,
+button.favorite-icon:active {
+  outline: none;
+  border: none;
+  background-color: transparent; 
+}
+
+
+
  
 .card-image {
   width: 100%;
