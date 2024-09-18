@@ -6,6 +6,8 @@ import CocktailCard from '../components/CocktailCard';
 import { useNavigate } from 'react-router-dom';
 import '../styles/LandingPage.css'
 
+import '../styles/LandingPage.css'
+
 
 export default function LandingPage() {
     // State to store the fetched random cocktail
@@ -44,7 +46,7 @@ export default function LandingPage() {
     };
 
     return (
-        <section className="main-content-container">
+        <section className="main-content-container landing-page">
             <section className='random-cocktail-container'>
                 {/* Conditional rendering: to make sure that the cocktail card is only rendered when randomCocktail is not null */}
                 {randomCocktail && (
