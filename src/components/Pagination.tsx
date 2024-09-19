@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import GlobalStateContext from "../context/GlobalStateContext";
 
-export const Pagination = ({ resultsPerPage, onPageChange,}: { resultsPerPage: number; onPageChange: (start: number, end: number) => void }) => {
+export const Pagination = ({ resultsPerPage, onPageChange }: { resultsPerPage: number; onPageChange: (start: number, end: number) => void }) => {
     const { searchResults } = useContext(GlobalStateContext);
     const [currentPage, setCurrentPage] = useState(1);
     const totalPages = searchResults.length > 0 ? Math.ceil(searchResults.length / resultsPerPage) : 1;
@@ -30,15 +30,19 @@ export const Pagination = ({ resultsPerPage, onPageChange,}: { resultsPerPage: n
 
     return (
         <div>
-            <button onClick={handlePrevious} disabled={currentPage === 1}>
-                Previous
-            </button>
+            {currentPage > 1 && (
+                <button onClick={handlePrevious}>
+                    Previous
+                </button>
+            )}
             <span>
                 Page {currentPage} / {totalPages}
             </span>
-            <button onClick={handleNext} disabled={currentPage === totalPages}>
-                Next
-            </button>
+            {currentPage < totalPages && (
+                <button onClick={handleNext}>
+                    Next
+                </button>
+            )}
         </div>
     );
 };
