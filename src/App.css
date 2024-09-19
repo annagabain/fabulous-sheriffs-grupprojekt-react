@@ -46,7 +46,14 @@
     color: antiquewhite;
   }
 
+  .active-link {
+    font-weight: bold;
+    color: var(--accent-red); 
 }
+
+}
+
+
 
 
 .main-content-container {
@@ -63,6 +70,8 @@
   gap: 16px;
   padding: 16px;
 }
+
+
 
 /*Cocktail card*/
 .card {
@@ -84,7 +93,12 @@
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
  
-
+ 
+.card-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
 
 
 /* Favourite icon */
@@ -132,9 +146,3 @@ button.favorite-icon:active {
 
 
 
- 
-.card-image {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-}

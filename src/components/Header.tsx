@@ -1,3 +1,5 @@
+// 
+
 import { NavLink, useLocation } from "react-router-dom";
 import logo from '../assets/logo-fabulous-sheriffs.png';
 
@@ -9,9 +11,21 @@ export default function Header() {
 
     return (
         <nav className={headerClass}>
-            <NavLink to="/"><img src={logo} className="logo" alt="Logo" /></NavLink>
-            <NavLink to="search-page">Search</NavLink>
-            <NavLink to="favorites-page">Favorites</NavLink>
+            <NavLink to="/">
+                <img src={logo} className="logo" alt="Logo" />
+            </NavLink>
+            <NavLink 
+                to="/search-page"
+                className={({ isActive }) => isActive ? 'active-link' : ''} 
+            >
+                Search
+            </NavLink>
+            <NavLink 
+                to="/favorites-page"
+                className={({ isActive }) => isActive ? 'active-link' : ''} 
+            >
+                Favorites
+            </NavLink>
         </nav>
     );
 }
