@@ -37,11 +37,11 @@
   }
 
   .details-text {
-    padding: 1.5rem; /* Reduce padding */
+    padding: 1.5rem;
   }
 
   .details-tags {
-    gap: 0.8rem; /* Slightly reduce gap */
+    gap: 0.8rem; 
   }
 }
 
