@@ -3,6 +3,8 @@ import GlobalStateContext from "../context/GlobalStateContext"
 import CocktailCard from "../components/CocktailCard";
 import { Drink } from "../type";
 import { useNavigate } from 'react-router-dom';
+import '../styles/FavoritesPage.css'
+
 
 export default function FavoritesPage() {
 
@@ -39,7 +41,13 @@ export default function FavoritesPage() {
                         ))
                     ) : (
                         // If no favorites are found, display a message to the user
-                        <h4>No favorite cocktails found.</h4>
+                        <h4>No favorite cocktails found.
+                        <img
+                            src='src/assets/pexels-badun-18782633.jpg'
+                            alt='empty glass'
+                            style={{ width: '100%' }}
+                        />
+                    </h4>
                     )
                 }
             </section>
