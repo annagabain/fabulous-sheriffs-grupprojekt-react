@@ -1,23 +1,43 @@
 /* search input field */
+
+.search-container {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center them horizontally */
+  margin-top: 5rem;
+  margin-bottom: 3rem;
+}
+
+
 #coctailSearch {
   border: 1px solid #dbdce0;
   border-radius: 15px;
-  height: 30px;
-  padding: 0.2em 2em;
-  margin-right: -4rem;
-  margin-top: 5rem;
-  margin-bottom: 3rem;
-  background-color: #e9d2d2;
+  height: 40px;
+  padding: 0.5em 1em; 
+  background-color: #f5f5f5; 
   transition: border-color 0.25s;
+  font-size: 1rem; 
+  width: 100%;
+  max-width: 500px; 
+  margin-right: -4rem;
+  outline: none;
+}
+
+#coctailSearch:focus {
+  border-color: var(--accent-red); 
+  box-shadow: 0 0 5px rgba(255, 99, 71, 0.5); 
 }
 
 #searchButtonLoopIcon {
   color: var(--accent-red);
   background-color: transparent;
   border-radius: 15px;
-  height: 32px;
-  padding: 0.2rem 2rem;
+  padding: 0.5rem 1.5rem;
+  padding: 1.5rem;
+  outline: none;
 }
+
+
 
 .card-container {
   display: grid;
@@ -27,3 +47,52 @@
   padding: 16px;
 
 }
+
+
+
+
+/* Responsiveness */
+
+/* --------------------------------------------------------------------- */
+/* Large screens */
+@media (min-width: 1200px) {
+  #coctailSearch {
+    width: 50%; 
+  }
+  
+  .card-container {
+    grid-template-columns: repeat(5, 1fr); 
+  }
+}
+
+/* Tablets */
+@media (max-width: 992px) {
+  #coctailSearch {
+    width: 70%; 
+  }
+
+  .card-container {
+    grid-template-columns: repeat(3, 1fr); 
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .card-container {
+    grid-template-columns: repeat(2, 1fr); 
+  }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+  .card-container {
+    grid-template-columns: repeat(1, 1fr); 
+  }
+
+  #coctailSearch {
+    margin-top: 2rem; 
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* --------------------------------------------------------------------- */
