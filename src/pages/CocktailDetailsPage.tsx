@@ -46,7 +46,7 @@ export default function CocktailDetailsPage() {
 
     return (
         <>
-         <section className="main-content-container">
+         <section className="main-content-container details-page">
         
             {/* <h2 className="title">{selectedCocktail.strDrink}</h2> */}
 
