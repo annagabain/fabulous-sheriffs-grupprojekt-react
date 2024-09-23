@@ -1,6 +1,11 @@
 /* Details Page */
 
 
+.details-page {
+margin-left: 5rem;
+margin-right: 5rem;
+}
+
 
 .cocktail-details {
   display: grid;
@@ -10,12 +15,10 @@
   text-align: start;
   gap: 2rem;
   align-items: start;
-
-  :hover {
-    transform: none;
-    box-shadow: none;
-  }
-
+}
+.cocktail-details:hover {
+  transform: none;
+  box-shadow: none;
 }
 
 .details-text {
@@ -46,7 +49,13 @@
     width: 100%;
     border-radius: 10px 0 15px 0;
     margin: 0;
-  }
+
+  }  
+}
+
+.details-page .card:hover {
+  transform: none;
+  box-shadow: none;
 }
 
 .details-page .favorite-icon {
