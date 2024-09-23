@@ -22,7 +22,7 @@ export default function FavoritesPage() {
 
         // Set the clicked cocktail as the selected cocktail in the global context
         setSelectedCocktail(drink);
-        
+
         // Navigate to the details page using the cocktail's ID
         navigate(`/cocktail/${drink.idDrink}`);
     };
@@ -35,19 +35,19 @@ export default function FavoritesPage() {
                 {favorites.length > 0 ?
                     // If there are favorites, map over the array and display each as a CocktailCard component
                     (favorites.map((drink, index) => (
-                            <section key={index} className="favorite-item" onClick={() => handleCocktailClick(drink)} style={{ cursor: 'pointer' }}>
-                                <CocktailCard drink={drink} />
-                            </section>
-                        ))
+                        <section key={index} className="favorite-item" onClick={() => handleCocktailClick(drink)} style={{ cursor: 'pointer' }}>
+                            <CocktailCard drink={drink} />
+                        </section>
+                    ))
                     ) : (
                         // If no favorites are found, display a message to the user
-                        <h4>No favorite cocktails found.
-                        <img
-                            src='src/assets/pexels-badun-18782633.jpg'
-                            alt='empty glass'
-                            style={{ width: '100%' }}
-                        />
-                    </h4>
+                        <h2>No favorite cocktails found.
+                            <img className="card"
+                                src='src/assets/pexels-badun-18782633.jpg'
+                                alt='empty glass'
+                                style={{ width: '100%' }}
+                            />
+                        </h2>
                     )
                 }
             </section>
