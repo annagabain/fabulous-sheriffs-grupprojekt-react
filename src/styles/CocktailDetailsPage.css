@@ -114,12 +114,88 @@
   text-transform: uppercase;
   margin-bottom: 0;
   padding-bottom: 3px;
+  margin-bottom: 0;
+  padding-bottom: 3px;
 }
 
 .details-tags {
   display: flex;
   gap: 1rem;
 }
+
+
+.details-info {
+  margin-top: 15px;
+  font-size: 16px;
+}
+
+.details-info p {
+  margin: 5px 0;
+}
+
+/* Ingredient section */
+.ingredients-grid {
+  max-width: 500px;
+  width: 40%;
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  margin-top: 10px;
+}
+
+
+.ingredient-link {
+  color: #000;
+
+  display: block;
+  cursor: pointer;
+  text-decoration: none;
+  margin: 5px 0;
+  font-weight: 500;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ingredient-link:hover {
+  font-weight: 700;
+  color: #615f5f;
+  text-decoration: none;
+}
+
+
+.measure {
+  text-align: right;
+  color: #666;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.instructions {
+  margin-top: 20px;
+}
+
+.instructions h3 {
+  margin-bottom: 10px;
+}
+
+.ingredients h3 {
+  margin-bottom: 10px;
+}
+
+
+.details-info {
+  margin-top: 15px;
+  font-size: 16px;
+}
+
+.details-info p {
+  margin: 5px 0;
+}
+
+
+
+
 
 
 .details-info {
@@ -229,6 +305,15 @@
 
   .title {
     font-size: 1.5rem;
+  }
+
+  .ingredients-grid {
+    width: 80%;
+    grid-template-columns: 2fr 1fr;
+  }
+
+  .ingredient-link {
+    white-space: normal;
   }
 
   .ingredients-grid {
