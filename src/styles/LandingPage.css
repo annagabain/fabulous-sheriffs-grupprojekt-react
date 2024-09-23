@@ -66,10 +66,10 @@
   flex-direction: column;
   align-items: center;
   max-width: 400px;
+ min-width: 200%;
+
   max-height: 405px;
 
-  /* width: 400px;
-  height: 405px; */
 
   .card {
     position: relative;
@@ -170,19 +170,26 @@
     font-size: 0.8rem;
   }
 
+  
   .landing-page {
     padding: 2rem;
     width: fit-content;
-    margin: 1rem auto;
   }
 
   .random-cocktail-container {
     margin: 0.5rem;
+    margin-top: -2rem;
     padding: 0.5rem;
+    padding-top: 0;
+
   }
 
   .cocktail-card {
     width: 200px;
+
+    img {
+      margin-top: 1rem;
+    }
   }
 
   .card {
@@ -190,8 +197,8 @@
   }
 
   .landing-page .favorite-icon {
-    top: -0.5rem;
-    right: 0.1rem;
+    top: -0.1rem;
+    right: 0.4rem;
     padding: 0.5rem;
     align-self: self-start;
 
