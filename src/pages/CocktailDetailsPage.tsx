@@ -48,24 +48,37 @@ export default function CocktailDetailsPage() {
         <>
             <section className="main-content-container details-page">
 
-                 {/* <h2 className="title">{selectedCocktail.strDrink}</h2> */}
+                {/* <h2 className="title">{selectedCocktail.strDrink}</h2> */}
 
 
                 <article className="cocktail-details">
-                <CocktailCard drink={cocktail} />
+
+                    <section>
+                        <CocktailCard drink={cocktail} />
+
+                        {cocktail.strTags && cocktail.strTags.length > 0 && (
+                            <p className="tags">
+                                {cocktail.strTags.split(",").map((tag, index) => (
+                                    <span key={index} className="tag">#{tag.trim()}</span> // Wrap each tag in a span with a class
+                                ))}
+                            </p>
+                        )}
+                    </section>
 
                     <div className="details-text">
                         <div>
                             <h2 className="title">{cocktail.strDrink}</h2>
                             <hr className="title-separator" />
                             <p className="category"><strong>Category:</strong> {cocktail.strCategory}</p>
+                            <p><strong>Alcohol Content:</strong> {cocktail.strAlcoholic}</p>
 
                         </div>
 
                         <div className="details-info">
-                            <p><strong>Tags:</strong> {cocktail.strTags?.split(",").join(", ") || "None"}</p>
-                            <p><strong>Glass Type:</strong> {cocktail.strGlass}</p>
-                            <p><strong>Alcohol Content:</strong> {cocktail.strAlcoholic}</p>
+                            {/* <p><strong>Tags:</strong> {cocktail.strTags?.split(",").join(", ") || "None"}</p> */}
+
+                            {/* <p><strong>Glass Type:</strong> {cocktail.strGlass}</p> */}
+                            {/* <p><strong>Alcohol Content:</strong> {cocktail.strAlcoholic}</p> */}
                         </div>
 
                         <section className="ingredients">
@@ -90,6 +103,11 @@ export default function CocktailDetailsPage() {
                         <section className="instructions">
                             <h3>Instructions</h3>
                             <p>{cocktail.strInstructions}</p>
+                        </section>
+
+                        <section>
+                            <p><strong>Serve:</strong> in a {cocktail.strGlass}</p>
+
                         </section>
                     </div>
                 </article>

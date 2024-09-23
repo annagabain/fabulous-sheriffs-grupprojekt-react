@@ -2,8 +2,8 @@
 
 
 .details-page {
-margin-left: 5rem;
-margin-right: 5rem;
+  margin-left: 5rem;
+  margin-right: 5rem;
 }
 
 
@@ -16,6 +16,7 @@ margin-right: 5rem;
   gap: 2rem;
   align-items: start;
 }
+
 .cocktail-details:hover {
   transform: none;
   box-shadow: none;
@@ -50,7 +51,7 @@ margin-right: 5rem;
     border-radius: 10px 0 15px 0;
     margin: 0;
 
-  }  
+  }
 }
 
 .details-page .card:hover {
@@ -68,6 +69,24 @@ margin-right: 5rem;
   font-size: 2rem;
 
 }
+
+.tags {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  padding: 0.2rem;
+  gap: 1rem;
+  display: inline-block;
+  display: flex;
+  gap: 0.5rem; 
+}
+
+.tag {
+  background-color: rgba(255, 123, 0, 0.151);
+  padding: 0.1rem 0.3rem;
+  display: inline-block; 
+}
+
+
 
 /* Container holding the title and category */
 .details-text>div {
