@@ -40,4 +40,13 @@ export interface Drink {
     strMeasure14: string | null;
     strMeasure15: string | null;
   }
+
+  export interface IngredientDetails {
+    id: number;
+    ingredientName: string;
+    description: string;
+    type: string;
+    alcohol: string;
+    image: string;
+}
   

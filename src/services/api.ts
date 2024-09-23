@@ -54,7 +54,7 @@ export const getIngredientByName = async (name: string) => {
             `https://www.thecocktaildb.com/api/json/v1/1/search.php?i=${name}`
         );
         const data = await response.json();
-        const ingredient = data.ingredients;
+        const ingredient = data.ingredients[0];
         console.log(ingredient);
 
         return ingredient;
