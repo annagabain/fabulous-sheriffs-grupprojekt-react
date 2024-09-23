@@ -28,11 +28,11 @@
         grid-column: 1;
     }
 
-    > *:nth-child(2) {
+    >*:nth-child(2) {
         grid-column: 7;
     }
 
-    > *:nth-child(3) {
+    >*:nth-child(3) {
         grid-column: 8;
     }
 
@@ -103,7 +103,6 @@
 
 .favorite-icon svg {
     font-size: 1.5rem;
-    /* color: var(--button-color); */
 }
 
 button.favorite-icon {
@@ -125,6 +124,7 @@ button.favorite-icon:hover:active {
     background-color: transparent;
 }
 
+
 /* Remove focus outline when clicked or focused */
 button.favorite-icon:focus,
 button.favorite-icon:active {
@@ -133,19 +133,33 @@ button.favorite-icon:active {
     background-color: transparent;
 }
 
-@media (max-width: 480px) {
-    .header {
-        grid-template-columns: 1fr 2fr 6fr 1fr 1fr 1fr;
-        padding: 1rem;
 
-        > *:nth-child(2) {
-            grid-column: 2;
-        }
 
-        > *:nth-child(3) {
-            grid-column: 3;
-        }
+.not-found-container {
+    padding: 0 25rem 0 29rem;
+    width: fit-content;
+    margin: 1rem;
+
+    .not-found-image {
+        height: 350px;
+        object-fit: cover;
+
     }
+
+    .four-oh-four {
+        background-color:var(--accent-red);
+        border-radius: 15px;
+        transform: rotate(-10deg);
+        display: inline-block; 
+        transform-origin: center; 
+    }
+
+    .bottle {
+        transform: rotate(10deg);
+        display: inline-block; 
+        transform-origin: center; 
+    }
+
 }
 
 /* Ingredient details page */
@@ -167,14 +181,69 @@ button.favorite-icon:active {
     grid-template-columns: repeat(10, 1fr);
     gap: 2rem;
     padding: 2rem;
-    
+
     .ingredient-drink {
         cursor: pointer;
         font-size: 0.8rem;
-        
+
         .ingredient-drink-img {
             width: 100%;
             border-radius: 50%;
         }
     }
+
 }
+
+
+
+
+
+
+/* RESPONSIVITY */
+/* ------------------------------------------------------------------------ */
+
+@media (max-width: 768px) {
+    .not-found-container {
+        padding: 0 5rem;
+    }
+
+    .not-found-image {
+        height: 250px; 
+    }
+}
+
+
+@media (max-width: 480px) {
+    .header {
+        grid-template-columns: 1fr 2fr 6fr 1fr 1fr 1fr;
+        padding: 1rem;
+
+        >*:nth-child(2) {
+            grid-column: 2;
+        }
+
+        >*:nth-child(3) {
+            grid-column: 3;
+        }
+    }
+
+    .not-found-container {
+        padding: 0 1rem;
+    }
+
+    .not-found-image {
+        height: 200px; 
+    }
+
+    .four-oh-four {
+        font-size: 1.5rem; 
+        transform: rotate(-5deg);
+    }
+
+    .bottle {
+        transform: rotate(5deg);
+    }
+}
+
+
+/* ------------------------------------------------------------------------ */

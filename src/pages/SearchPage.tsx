@@ -128,13 +128,13 @@ export default function SearchPage() {
                             ))
 
                         ) : (
-                            <h2>No match found.
-                                <img
+                            <section className="not-found-container">
+                                <h3>No match found.</h3>
+                                <img className="not-found-image card"
                                     src='src/assets/pexels-badun-18782633.jpg'
                                     alt='empty glass'
-                                    style={{ width: '100%' }}
                                 />
-                            </h2>
+                            </section>
                         )
 
                     }
