@@ -46,37 +46,53 @@ export default function CocktailDetailsPage() {
 
     return (
         <>
-         <section className="main-content-container details-page">
-        
-            {/* <h2 className="title">{selectedCocktail.strDrink}</h2> */}
+            <section className="main-content-container details-page">
+
+                 {/* <h2 className="title">{selectedCocktail.strDrink}</h2> */}
 
 
-            <article className="cocktail-details">
+                <article className="cocktail-details">
                 <CocktailCard drink={cocktail} />
-                <div className="details-text">    
-                    <h2 className="title">{cocktail.strDrink}</h2>
-                    <div className="details-tags">
-                        <p>{cocktail.strCategory}</p>
-                        <p>{cocktail.strTags?.split(",").join(", ")}</p>
-                        <p>{cocktail.strGlass}</p>
-                        <p>{cocktail.strAlcoholic}</p>
+
+                    <div className="details-text">
+                        <div>
+                            <h2 className="title">{cocktail.strDrink}</h2>
+                            <hr className="title-separator" />
+                            <p className="category"><strong>Category:</strong> {cocktail.strCategory}</p>
+
+                        </div>
+
+                        <div className="details-info">
+                            <p><strong>Tags:</strong> {cocktail.strTags?.split(",").join(", ") || "None"}</p>
+                            <p><strong>Glass Type:</strong> {cocktail.strGlass}</p>
+                            <p><strong>Alcohol Content:</strong> {cocktail.strAlcoholic}</p>
+                        </div>
+
+                        <section className="ingredients">
+                            <h3>Ingredients</h3>
+                            <div className="ingredients-grid">
+                                {ingredients.map((ing, i) => (
+                                    <>
+                                        <a
+                                            key={i}
+                                            className="ingredient-link ingredient"
+                                            onClick={() => handleIngredientClick(ing.ingredient)}
+                                        >
+                                            {ing.ingredient}
+                                        </a>
+                                        <span className="measure">{ing.measure}</span>
+                                    </>
+                                ))}
+                            </div>
+                        </section>
+
+
+                        <section className="instructions">
+                            <h3>Instructions</h3>
+                            <p>{cocktail.strInstructions}</p>
+                        </section>
                     </div>
-                    <section className="ingredients">
-                        <h3>Ingredients</h3>
-                        {ingredients.map((ing, i) => {
-                            return (
-                                <p key={i} onClick={() => handleIngredientClick(ing.ingredient)}>
-                                    {ing.ingredient}, {ing.measure}
-                                </p>
-                            );
-                        })}
-                    </section>
-                    <section className="instructions">
-                        <h3>Instructions</h3>
-                        <p>{cocktail.strInstructions}</p>
-                    </section>
-                </div>
-            </article>
+                </article>
             </section>
         </>
     );
