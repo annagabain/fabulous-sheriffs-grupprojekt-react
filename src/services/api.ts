@@ -46,3 +46,37 @@ export const getCocktailDetails = async (idDrink: number) => {
         throw error;
     }
 };
+
+//Fetch ingredient details
+export const getIngredientByName = async (name: string) => {
+    try {
+        const response = await fetch(
+            `https://www.thecocktaildb.com/api/json/v1/1/search.php?i=${name}`
+        );
+        const data = await response.json();
+        const ingredient = data.ingredients;
+        console.log(ingredient);
+
+        return ingredient;
+    } catch (error) {
+        console.error("Error fetching ingredient by name:", error);
+        throw new Error("Failed to fetch ingredient details.");
+    }
+};
+
+
+//Fetch cocktails that contain a specific ingredient
+export const getCocktailsByIngredient = async (ingredient: string) => {
+    try {
+        const response = await fetch(
+            `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredient}`
+        );
+        const data = await response.json();
+        const cocktails = data.drinks; 
+
+        return cocktails;
+    } catch (error) {
+        console.error("Error fetching cocktails by ingredient:", error);
+        throw new Error("Failed to fetch cocktails containing the ingredient.");
+    }
+};
