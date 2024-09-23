@@ -41,13 +41,14 @@ export default function FavoritesPage() {
                     ))
                     ) : (
                         // If no favorites are found, display a message to the user
-                        <h2>No favorite cocktails found.
-                            <img className="card"
+                        <section className="not-found-container">
+                        <h3>No favorite cocktails found.
+                            <img className="not-found-image card"
                                 src='src/assets/pexels-badun-18782633.jpg'
                                 alt='empty glass'
-                                style={{ width: '100%' }}
                             />
-                        </h2>
+                        </h3>
+                        </section>
                     )
                 }
             </section>
