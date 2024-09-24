@@ -65,7 +65,7 @@ export default function CocktailDetailsPage() {
                         )}
                     </section>
 
-                    <div className="details-text">
+                    <div className="details-title-container">
                         <div>
                             <h2 className="title">{cocktail.strDrink}</h2>
                             <hr className="title-separator" />
@@ -74,12 +74,6 @@ export default function CocktailDetailsPage() {
 
                         </div>
 
-                        <div className="details-info">
-                            {/* <p><strong>Tags:</strong> {cocktail.strTags?.split(",").join(", ") || "None"}</p> */}
-
-                            {/* <p><strong>Glass Type:</strong> {cocktail.strGlass}</p> */}
-                            {/* <p><strong>Alcohol Content:</strong> {cocktail.strAlcoholic}</p> */}
-                        </div>
 
                         <section className="ingredients">
                             <h3>Ingredients</h3>
@@ -103,11 +97,8 @@ export default function CocktailDetailsPage() {
                         <section className="instructions">
                             <h3>Instructions</h3>
                             <p>{cocktail.strInstructions}</p>
-                        </section>
-
-                        <section>
+                            <br/>
                             <p><strong>Serve:</strong> in a {cocktail.strGlass}</p>
-
                         </section>
                     </div>
                 </article>
