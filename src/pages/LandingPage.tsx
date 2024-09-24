@@ -52,7 +52,10 @@ export default function LandingPage() {
                 {randomCocktail && (
                     <>
                         <section className='cocktail-card'>
-                            <CocktailCard drink={randomCocktail} />
+                            {/* Wrapping the CocktailCard in a clickable div to handle navigation to the cocktail details page */}
+                            <div onClick={handleViewDetails} style={{cursor: 'pointer'}}>
+                                <CocktailCard drink={randomCocktail} />
+                            </div>
                             <button onClick={handleViewDetails} className='view-more'>
                                 View Details
                             </button>
