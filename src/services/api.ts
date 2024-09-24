@@ -7,7 +7,7 @@ export const getCocktailByName = async (name: string) => {
             `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${name}`
         );
         const data = await response.json();
-        const drinks: Drink = data.drinks;
+        const drinks: Drink[] = data.drinks;
 
         return drinks;
     } catch (error) {
