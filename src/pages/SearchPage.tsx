@@ -80,6 +80,7 @@ export default function SearchPage() {
                     const categoryResult = await getCocktailsByCategory(selectedCategory);
                     if (categoryResult) filtered = categoryResult;
                     else return;
+
                 }
                 if (selectedOption) {
                     const optionResult = await getCocktailsByOption(selectedOption);
@@ -90,6 +91,7 @@ export default function SearchPage() {
                         } else filtered = optionResult;
                     } else return;
                 }
+
                 setSearchResults(filtered);
             }
 
@@ -122,6 +124,12 @@ export default function SearchPage() {
 
         // Clear the input field
         // setSearchTerm('');
+    };
+
+    const clearFilters = () => {
+        setSearchTerm('');
+        setSelectedCategory('');
+        setSelectedOption('');
     };
 
     const handleCocktailClick = (drink: Drink) => {
@@ -162,6 +170,7 @@ export default function SearchPage() {
 
                     <select
                         id="option-select"
+                        value={selectedOption}
                         onChange={(e) => setSelectedOption(e.target.value)}
                     >
                         <option value="">Select drink type</option>
@@ -174,6 +183,8 @@ export default function SearchPage() {
                         {/* Font Awesome search icon */}
                     </button>
                 </form>
+
+                <button onClick={clearFilters} >Clear all filters</button>
 
                 {/* Display search results */}
                 <div className="card-container">
