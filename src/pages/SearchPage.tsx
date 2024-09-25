@@ -80,6 +80,7 @@ export default function SearchPage() {
                     const categoryResult = await getCocktailsByCategory(selectedCategory);
                     if (categoryResult) filtered = categoryResult;
                     else return;
+
                 }
                 if (selectedOption) {
                     const optionResult = await getCocktailsByOption(selectedOption);
@@ -90,6 +91,7 @@ export default function SearchPage() {
                         } else filtered = optionResult;
                     } else return;
                 }
+
                 setSearchResults(filtered);
             }
 
