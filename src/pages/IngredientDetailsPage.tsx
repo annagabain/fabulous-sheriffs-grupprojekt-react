@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getCocktailsByIngredient, getIngredientByName } from "../services/api";
 import { Drink, IngredientDetails } from "../type";
+import '../styles/IngredientDetailsPage.css'
+
 
 export default function IngredientDetailsPage() {
     const { ingredient } = useParams<{ ingredient: string }>();
@@ -44,7 +46,7 @@ export default function IngredientDetailsPage() {
         <>
             <section className="main-content-container">
                 <section className="ingredient-details">
-                    <img src={ingredientDetails.image} />
+                    <img src={ingredientDetails.image} className="ingredient-image" alt="Ingredient" />
                     <div>
                         <h2>{ingredientDetails.ingredientName}</h2>
                         <p>Type: {ingredientDetails.type}</p>
@@ -56,15 +58,15 @@ export default function IngredientDetailsPage() {
                 </section>
                 <section className="ingredient-drink-list">
                     {filteredDrinks?.map((drink, i) => (
-                        <span className='ingredient-drink'
+                        <span
+                            className="ingredient-drink"
                             key={i}
-                            onClick={() =>
-                                navigate(`/cocktail/${drink.idDrink}`)
-                            }
+                            onClick={() => navigate(`/cocktail/${drink.idDrink}`)}
                         >
                             <img
                                 className="ingredient-drink-img"
                                 src={drink.strDrinkThumb}
+                                alt={drink.strDrink}
                             />
                             <p>{drink.strDrink}</p>
                         </span>
