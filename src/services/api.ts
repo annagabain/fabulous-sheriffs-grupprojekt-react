@@ -73,7 +73,7 @@ export const getCocktailsByIngredient = async (ingredient: string) => {
             `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredient}`
         );
         const data = await response.json();
-        const cocktails = data.drinks;
+        const cocktails: Drink[] = data.drinks;
 
         return cocktails;
     } catch (error) {
@@ -107,7 +107,23 @@ export const getCocktailsByCategory = async (category: string) => {
             `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${category}`
         );
         const data = await response.json();
-        const filteredDrinks = data.drinks;
+        const filteredDrinks: Drink[] = data.drinks;
+
+        return filteredDrinks;
+    } catch (error) {
+        console.error("Error fetching cocktails:", error);
+        throw new Error("Failed to fetch cocktails.")
+    }
+};
+
+//Filter cocktails by option
+export const getCocktailsByOption = async (option: string) => {
+    try {
+        const response = await fetch(
+            `https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=${option}`
+        );
+        const data = await response.json();
+        const filteredDrinks: Drink[] = data.drinks;
 
         return filteredDrinks;
     } catch (error) {

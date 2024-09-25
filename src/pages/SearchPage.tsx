@@ -3,6 +3,7 @@ import {
     getCategories,
     getCocktailByName,
     getCocktailsByCategory,
+    getCocktailsByOption,
 } from "../services/api";
 import GlobalStateContext from "../context/GlobalStateContext";
 import CocktailCard from "../components/CocktailCard";
@@ -20,6 +21,7 @@ export default function SearchPage() {
     const navigate = useNavigate();
     const [categories, setCategories] = useState<string[]>([]);
     const [selectedCategory, setSelectedCategory] = useState<string>("");
+    const [selectedOption, setSelectedOption] = useState<string>("");
 
     // Fetch all cocktails and categories
     useEffect(() => {
@@ -55,20 +57,40 @@ export default function SearchPage() {
 
         try {
             if (searchTerm.length > 0) {
-                const result: Drink[] = await getCocktailByName(searchTerm);
-                setSearchResults(result);
-
-                if (selectedCategory) {
-                    const filtered = result.filter((drink) => {
-                        return drink.strCategory === selectedCategory;
-                    });
+                const result = await getCocktailByName(searchTerm);
+                if (result) {
+                    let filtered = result;
+                    if (selectedCategory) {
+                        filtered = filtered.filter(
+                            (drink) => drink.strCategory === selectedCategory
+                        );
+                    }
+                    if (selectedOption) {
+                        filtered = filtered.filter(
+                            (drink) => drink.strAlcoholic === selectedOption
+                        );
+                    }
                     setSearchResults(filtered);
+                } else {
+                    setSearchResults([]);
                 }
-            } else if (selectedCategory) {
-                const categorySearch: Drink[] = await getCocktailsByCategory(
-                    selectedCategory
-                );
-                setSearchResults(categorySearch);
+            } else {
+                let filtered: Drink[] = [];
+                if (selectedCategory) {
+                    const categoryResult = await getCocktailsByCategory(selectedCategory);
+                    if (categoryResult) filtered = categoryResult;
+                    else return;
+                }
+                if (selectedOption) {
+                    const optionResult = await getCocktailsByOption(selectedOption);
+                    if (optionResult) {
+                        if (filtered.length > 0) {
+                            filtered = filtered.filter((drink) =>
+                                optionResult.some((optionDrink) => optionDrink.idDrink === drink.idDrink));
+                        } else filtered = optionResult;
+                    } else return;
+                }
+                setSearchResults(filtered);
             }
 
             // Check if result is an array with at least one object
@@ -113,7 +135,7 @@ export default function SearchPage() {
             <section className="main-content-container">
                 {/* SearchPage */}
 
-                <form onSubmit={handleSearch}>
+                <form className="search-form" onSubmit={handleSearch}>
                     <input
                         id="coctailSearch"
                         type="text"
@@ -121,12 +143,9 @@ export default function SearchPage() {
                         onChange={(e) => setSearchTerm(e.target.value)}
                         placeholder="Enter drink name"
                     />
-                    <button id="searchButtonLoopIcon" type="submit">
-                        <i className="fas fa-search"></i>{" "}
-                        {/* Font Awesome search icon */}
-                    </button>
 
                     <select
+                        id="category-select"
                         value={selectedCategory}
                         onChange={(e) => setSelectedCategory(e.target.value)}
                     >
@@ -140,6 +159,20 @@ export default function SearchPage() {
                             </option>
                         ))}
                     </select>
+
+                    <select
+                        id="option-select"
+                        onChange={(e) => setSelectedOption(e.target.value)}
+                    >
+                        <option value="">Select drink type</option>
+                        <option value="Alcoholic">Alcoholic</option>
+                        <option value="Non alcoholic">Non-Alcoholic</option>
+                    </select>
+
+                    <button id="searchButtonLoopIcon" type="submit">
+                        <i className="fas fa-search"></i>{" "}
+                        {/* Font Awesome search icon */}
+                    </button>
                 </form>
 
                 {/* Display search results */}
