@@ -3,13 +3,14 @@
 .search-container {
     display: flex;
     align-items: center;
-    justify-content: center; /* Center them horizontally */
+    justify-content: center; 
     margin-top: 5rem;
     margin-bottom: 3rem;
 }
 
 .search-form {
     padding: 1rem;
+    /* width: 100%; */
 }
 
 #coctailSearch,
@@ -80,6 +81,7 @@
 
 /* Tablets */
 @media (max-width: 992px) {
+ 
     #coctailSearch {
         width: 70%;
     }
@@ -98,6 +100,9 @@
 
 /* Small mobile */
 @media (max-width: 480px) {
+    #coctailSearch, #category-select, #option-select {
+        width: 50%;
+    }
     .card-container {
         grid-template-columns: repeat(1, 1fr);
     }
