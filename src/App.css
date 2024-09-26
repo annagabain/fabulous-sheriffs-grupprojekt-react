@@ -162,40 +162,13 @@ button.favorite-icon:active {
 
 }
 
-/* Ingredient details page */
-.ingredient-details {
-    display: flex;
-    margin-bottom: 3rem;
 
-    img {
-        object-fit: contain;
-    }
-
-    .ingredient-description {
-        white-space: pre-wrap;
-    }
+/* test */
+/* .main-content-container {
+    padding: 20px; 
+    margin: 0 auto; 
+    max-width: 1200px;  */
 }
-
-.ingredient-drink-list {
-    display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    gap: 2rem;
-    padding: 2rem;
-
-    .ingredient-drink {
-        cursor: pointer;
-        font-size: 0.8rem;
-
-        .ingredient-drink-img {
-            width: 100%;
-            border-radius: 50%;
-        }
-    }
-
-}
-
-
-
 
 
 
@@ -247,3 +220,5 @@ button.favorite-icon:active {
 
 
 /* ------------------------------------------------------------------------ */
+
+
