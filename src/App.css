@@ -55,8 +55,14 @@
     border: 0.2rem solid var(--accent-red);
     border-radius: 15px;
     background-color: var(--main-container-background);
-    margin: 1rem;
+
+    padding: 2rem; 
+    margin: 1rem auto; 
+    max-width: 1200px;
 }
+
+
+
 
 .card-container {
     display: grid;
