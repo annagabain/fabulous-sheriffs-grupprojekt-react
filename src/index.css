@@ -40,7 +40,7 @@ a:hover {
 body {
   background-image: url('./assets/background-image-ice.png') ;
   background-size: cover; 
-  background-repeat: no-repeat; 
+  /* background-repeat: no-repeat;  */
   background-position: center;
   margin: 0;
   display: flex;
