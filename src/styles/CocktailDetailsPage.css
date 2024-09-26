@@ -1,8 +1,9 @@
 /* Details Page */
 .details-page {
-  margin-left: 5rem;
+  max-width: 1200px;
+  /* margin-left: 5rem;
   margin-right: 5rem;
-  padding-bottom: 3rem;
+  padding-bottom: 3rem; */
 }
 
 .cocktail-details {
@@ -12,6 +13,7 @@
   text-align: start;
   gap: 2rem;
   align-items: start;
+
 }
 
 .cocktail-details:hover {
