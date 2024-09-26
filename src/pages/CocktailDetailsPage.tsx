@@ -23,7 +23,7 @@ export default function CocktailDetailsPage() {
             }
         }
         fetchCocktailDetails(id);
-    }, []);
+    }, [id]);  // id as a dependency to avoid unnecessary re-renders (to ensure that the useEffect only runs when the id changes and not on every re-render.)
 
     if (!cocktail) return;
 
