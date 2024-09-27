@@ -3,13 +3,15 @@ import GlobalStateContext from '../context/GlobalStateContext';
 import { Drink } from '../type';
 import { getRandomCocktail } from '../services/api';
 import CocktailCard from '../components/CocktailCard';
-import { useNavigate } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import '../styles/LandingPage.css'
 
 
 export default function LandingPage() {
+    const loaderCocktailData = useLoaderData() as Drink 
+
     // State to store the fetched random cocktail
-    const [randomCocktail, setRandomCocktail] = useState<Drink | null>(null);
+    const [randomCocktail, setRandomCocktail] = useState<Drink | null>(loaderCocktailData); // Initialize state with the loader data
 
     // Destructure the global context to use the setSelectedCocktail function
     const { setSelectedCocktail } = useContext(GlobalStateContext);
@@ -29,11 +31,6 @@ export default function LandingPage() {
         }
     };
 
-    // useEffect hook to fetch a random cocktail when the component mounts
-    useEffect(() => {
-        fetchNewRandomCocktail(); // Trigger API call to fetch a cocktail on first render
-    }, []);
-
     const handleViewDetails = () => {
         if (randomCocktail) {
             // Set the selected cocktail in global state
@@ -47,7 +44,7 @@ export default function LandingPage() {
         <section className="main-content-container landing-page">
             <section className='random-cocktail-container'>
                 {/* Conditional rendering: to make sure that the cocktail card is only rendered when randomCocktail is not null */}
-                {randomCocktail && (
+                {randomCocktail ? (
                     <>
                         <section className='cocktail-card'>
                             {/* Wrapping the CocktailCard in a clickable div to handle navigation to the cocktail details page */}
@@ -60,6 +57,8 @@ export default function LandingPage() {
                             <button onClick={fetchNewRandomCocktail} className='show-another-cocktail'>Show Another Cocktail</button>
                         </section>
                     </>
+                ) : (
+                    <div className="loader">Loading...</div>
                 )}
             </section>
         </section>

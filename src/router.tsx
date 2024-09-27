@@ -6,11 +6,12 @@ import FavoritesPage from "./pages/FavoritesPage";
 import CocktailDetailsPage from "./pages/CocktailDetailsPage";
 import PageNotFound from "./pages/PageNotFound";
 import IngredientDetailsPage from "./pages/IngredientDetailsPage";
+import { loadRandomCocktail } from './components/loader';
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
         <Route path="/" element={<App />}>
-           <Route index element={<LandingPage />} />
+           <Route index element={<LandingPage />} loader={loadRandomCocktail} />
            <Route path='search-page' element={<SearchPage />} />
            <Route path='favorites-page' element={<FavoritesPage />} />
            <Route path='cocktail/:id' element={<CocktailDetailsPage />} />
