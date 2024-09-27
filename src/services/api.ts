@@ -1,4 +1,4 @@
-import { faTrashRestore } from "@fortawesome/free-solid-svg-icons";
+// import { faTrashRestore } from "@fortawesome/free-solid-svg-icons";
 import { Drink } from "../type";
 
 export const getCocktailByName = async (name: string) => {
