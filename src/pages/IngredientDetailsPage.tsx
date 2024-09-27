@@ -38,7 +38,7 @@ export default function IngredientDetailsPage() {
         } catch (error) {
             console.error(error);
         }
-    }, []);
+    }, [ingredient]); // Ingredient is a dependency to avoid unnecessary re-renders (to ensure that the useEffect only runs when the id changes and not on every re-render.)
 
     if (!ingredientDetails) return;
 

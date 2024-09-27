@@ -33,17 +33,29 @@ export const getRandomCocktail = async () => {
 
 export const getCocktailDetails = async (idDrink: number) => {
     try {
+         // Check if the drink is already cached in localStorage
+        const cachedCocktail = localStorage.getItem(`cocktail_${idDrink}`);
+    if (cachedCocktail) {
+        console.log('Fetching from cache:', JSON.parse(cachedCocktail)); 
+        return JSON.parse(cachedCocktail); // Return cached data
+    }
+
+        // Fetch the drink from the API if not cached
         const response = await fetch(
             `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${idDrink}`
         );
         const data = await response.json();
-        const drink: Drink = data.drinks[0];
 
-        console.log(drink);
-
-        return drink;
+        // If the drink is found, cache it and return the result
+        if (data.drinks) {
+            const drink: Drink = data.drinks[0];
+            localStorage.setItem(`cocktail_${idDrink}`, JSON.stringify(drink)); // Cache the result
+            return drink;
+        }
+    
+        return null; // Return null if no drink found
     } catch (error) {
-        console.error("Error fetching cocktail details:", error);
+        console.error('Error fetching cocktail details:', error);
         throw error;
     }
 };
@@ -51,14 +63,28 @@ export const getCocktailDetails = async (idDrink: number) => {
 //Fetch ingredient details
 export const getIngredientByName = async (name: string) => {
     try {
+        // Check if the ingredient is already cached in localStorage
+        const cachedIngredient = localStorage.getItem(`ingredient_${name}`);
+        if (cachedIngredient) {
+            console.log('Fetching ingredient from cache:', JSON.parse(cachedIngredient));
+            return JSON.parse(cachedIngredient); // Return cached data
+        }
+
+        // Fetch the ingredient from the API if not cached
         const response = await fetch(
             `https://www.thecocktaildb.com/api/json/v1/1/search.php?i=${name}`
         );
         const data = await response.json();
-        const ingredient = data.ingredients[0];
-        console.log(ingredient);
 
+        // If the ingredient is found, cache it and return the result
+        if (data.ingredients) {
+        const ingredient = data.ingredients[0];
+        localStorage.setItem(`ingredient_${name}`, JSON.stringify(ingredient)); // Cache the result
+        console.log('Fetched ingredient from API:', ingredient); // Log fetched data
         return ingredient;
+    }
+
+    return null; // Return null if no ingredient is found
     } catch (error) {
         console.error("Error fetching ingredient by name:", error);
         throw new Error("Failed to fetch ingredient details.");
