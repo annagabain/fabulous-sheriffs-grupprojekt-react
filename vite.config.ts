@@ -5,4 +5,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   base: '/fabulous-sheriffs-grupprojekt-react/',
   plugins: [react()],
+  build: {
+    assetsDir: 'assets',  // Ensures assets are placed in the dist/assets folder
+  },
 })
