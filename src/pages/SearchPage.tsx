@@ -9,40 +9,52 @@ import GlobalStateContext from "../context/GlobalStateContext";
 import CocktailCard from "../components/CocktailCard";
 import { Drink } from "../type";
 import { Pagination } from "../components/Pagination";
-import { useNavigate } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 
 import "../styles/SearchPage.css";
 
 export default function SearchPage() {
+    // Get the data from the loader
+    const { categories: loadedCategories, cocktails:loadedCocktails } = useLoaderData() as {
+            categories: string[];
+            cocktails: Drink[];
+    };
     const [searchTerm, setSearchTerm] = useState<string>("");
     const { searchResults, setSearchResults } = useContext(GlobalStateContext);
     const [displayedResults, setDisplayedResults] = useState<Drink[]>([]);
     const { setSelectedCocktail } = useContext(GlobalStateContext);
     const navigate = useNavigate();
-    const [categories, setCategories] = useState<string[]>([]);
+    //const [categories, setCategories] = useState<string[]>([]); // The loadedCategories from the loader is directly used for displaying categories in the dropdown
     const [selectedCategory, setSelectedCategory] = useState<string>("");
     const [selectedOption, setSelectedOption] = useState<string>("");
 
     // Fetch all cocktails and categories
-    useEffect(() => {
-        const fetchAllCocktails = async () => {
-            const categoryList = await getCategories();
-            setCategories(categoryList);
-            try {
-                const result = await getCocktailByName("");
-                if (Array.isArray(result) && result.length > 0) {
-                    setSearchResults(result);
-                } else {
-                    setSearchResults([]);
-                }
-            } catch (error) {
-                console.error("Error fetching all drinks:", error);
-                setSearchResults([]);
-            }
-        };
+    // useEffect(() => {
+    //     const fetchAllCocktails = async () => {
+    //         const categoryList = await getCategories();
+    //         setCategories(categoryList);
+    //         try {
+    //             const result = await getCocktailByName("");
+    //             if (Array.isArray(result) && result.length > 0) {
+    //                 setSearchResults(result);
+    //             } else {
+    //                 setSearchResults([]);
+    //             }
+    //         } catch (error) {
+    //             console.error("Error fetching all drinks:", error);
+    //             setSearchResults([]);
+    //         }
+    //     };
 
-        fetchAllCocktails();
-    }, []);
+    //     fetchAllCocktails();
+    // }, []);
+
+    // Use the loaded data for initial search results
+    useEffect(() => {
+        if (loadedCocktails && loadedCocktails.length > 0) {
+            setSearchResults(loadedCocktails);
+        }
+    }, [loadedCocktails]);
 
     useEffect(() => {
         setDisplayedResults(searchResults.slice(0, 10));
@@ -130,12 +142,18 @@ export default function SearchPage() {
         setSearchTerm('');
         setSelectedCategory('');
         setSelectedOption('');
+        setSearchResults(loadedCocktails); // Reset to initial loaded cocktails
     };
 
     const handleCocktailClick = (drink: Drink) => {
         setSelectedCocktail(drink);
         // Navigate to the details page using the cocktail's ID
         navigate(`/cocktail/${drink.idDrink}`);
+    };
+
+    // Check if all filters are empty
+    const areAllFiltersEmpty = () => {
+        return searchTerm === "" && selectedCategory === "" && selectedOption === "";
     };
 
     return (
@@ -161,7 +179,7 @@ export default function SearchPage() {
                             Select category
                         </option>
                         <option value="">None</option>
-                        {categories.map((option, i) => (
+                        {loadedCategories.map((option, i) => (
                             <option key={i} value={option}>
                                 {option}
                             </option>
@@ -178,7 +196,9 @@ export default function SearchPage() {
                         <option value="Non alcoholic">Non-Alcoholic</option>
                     </select>
 
-                    <button id="searchButtonLoopIcon" type="submit">
+                    <button id="searchButtonLoopIcon" type="submit" 
+                        disabled={areAllFiltersEmpty()} // Disable button if all filters are empty 
+                    >
                         <i className="fas fa-search"></i>{" "}
                         {/* Font Awesome search icon */}
                     </button>
