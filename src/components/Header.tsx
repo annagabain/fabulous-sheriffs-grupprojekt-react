@@ -1,5 +1,3 @@
-// 
-
 import { NavLink, useLocation } from "react-router-dom";
 import logo from '../assets/logo-fabulous-sheriffs.png';
 
